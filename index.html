@@ -1,0 +1,27 @@
+<html>
+
+<head>
+<title>Drug consumption in the USA</title>
+<link rel="stylesheet" href="radar-chart.css">
+<script type="text/javascript" src="//d3js.org/d3.v3.js"></script>
+
+</head>
+
+<body>
+<h1>User type distribution by drug</h1>
+
+<select id="drug_list1" onchange="updateSelectedDrug(this)" >
+</select>
+
+<select id="drug_list2" onchange="updateSelectedDrug(this)">
+  <option hidden>Choose a drug to compare<option>
+</select>
+
+<div class="radar_chart"></div>
+
+<script src="radar-chart.js"></script>
+<script src="script.js"></script>
+
+</body>
+
+</html>
