@@ -1,13 +1,13 @@
-var chart = RadarChart.chart();
 var drugs = ["Marijuana", "Heroin", "Cocaine", "Crack", "Stimulants", "Inhalant", "Hallucinogen", "Meth", "Pain Reliever", "Tranquilizer", "Sedative"];
 var selectedDrug = {"Main": "Marijuana"};
 var dateset;
+var chart = RadarChart();
 populateDropDown("drug_list1");
 populateDropDown("drug_list2");
 
 d3.csv("./user_type_count.csv", function (data) {
   dataset = data;
-  gen_vis();
+  init_vis();
 });
 
 function populateDropDown(id) {
@@ -33,15 +33,14 @@ function updateSelectedDrug(elm){
     delete selectedDrug.Sec;
   }
 
-  //update_vis();
-  //TODO: when selecting in one deleting option in another
+  gen_vis();
 }
 
 function getRowByIdentifier(pk,id){
-  line = {};
+  var line = {};
 
   for(i= 0; i < dataset.length; i ++){
-    line = dataset[i];
+    line = Object.assign({},dataset[i]);
 
     if(line[pk] == id) break;
   }
@@ -52,9 +51,9 @@ function getRowByIdentifier(pk,id){
 }
 
 function createData(drug){
-  axis = []
-  line = getRowByIdentifier("Drug",drug);
-  keys = Object.keys(line);
+  var axis = []
+  var line = getRowByIdentifier("Drug",drug);
+  var keys = Object.keys(line);
 
   for(i in keys) {
     obj_axis = {};
@@ -64,26 +63,24 @@ function createData(drug){
     axis.push(obj_axis);
   }
 
-  return {className: drug,
-          axes: axis};
+  return {"key": drug,
+          "values": axis};
+}
+
+function init_vis(){
+  var operation = d3.select('body').append('div').append('h2');
+
+  d3.select('#radar_chart')
+          .call(chart);
+
+  gen_vis();
 }
 
 function gen_vis(){
-  var data = [createData(selectedDrug["Main"])];
+  var data = []
 
-  var cfg = chart.config();
-  var svg = d3.select('body').append('svg')
-    .attr('width', cfg.w)
-    .attr('height', cfg.h);
-  svg.append('g').classed('single', 1).datum(data).call(chart);
-}
+  for(i in selectedDrug)
+      data.push(createData(selectedDrug[i]));
 
-function update_vis(){
-  new_data = []
-
-  for(i in selectedDrug){
-      new_data.push(createData(selectedDrug[i]));
-  }
-
-  return new_data;
+  chart.data(data).update();
 }
