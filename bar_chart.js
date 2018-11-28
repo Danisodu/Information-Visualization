@@ -51,8 +51,10 @@ const sample = [
   },
 ];
 
+var actualDrug = "Cocaine"
 const svg = d3.select('svg');
 const svgContainer = d3.select('#container');
+var shite = null;
 
 const margin = 80;
 const width = 600 - 2 * margin;
@@ -107,26 +109,24 @@ const barGroups = chart.selectAll()
 
 barGroups
   .append('rect')
-  .attr('class', 'bar')
+  .attr('class', function(d,i){return 'bar bar' + i;})
   .attr('x', (g) => 0)
   .attr('y', (g) => yScale(g.language))
   .attr('width', (g) => xScale(g.value))
   .attr('height', yScale.bandwidth())
+  .on('click', function (actual) {
 
-
-  //esteves
- .on('click', function () {
-
-    d3.selectAll('rect')
-      .style('fill', "#80cbc4")
+    updateDrug(actual.language);
+    if (shite !== null) {
+      shite.style('fill', "#80cbc4");
+    }
 
     d3.select(this)
       .style('fill', 'green')
       .attr('opacity', 0.6)
 
-
+    shite = d3.select(this)
   })
-
 
   .on('mouseenter', function (actual, i) {
     d3.selectAll('.value')
@@ -184,7 +184,8 @@ barGroups
 
   })
 
-
+svg.select('.bar1').style('fill', 'green')
+shite = d3.select('.bar1')
 
 //barGroups
   //.append('text')
