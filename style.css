@@ -1,0 +1,179 @@
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #2F4A6D;
+}
+
+div#layout {
+  position: relative;
+  top: -10px;
+  left: -462px;
+  text-align: center;
+}
+
+div#container {
+  width: 550px;
+  height: 600px;
+  margin: auto;
+}
+
+svg {
+  width: 100%;
+  height: 100%;
+}
+
+.bar {
+  fill: #80cbc4;
+}
+
+text {
+  font-size: 12px;
+  fill: white;
+}
+
+path {
+  stroke: gray;
+}
+
+line {
+  stroke: gray;
+}
+
+line#limit {
+  stroke: #FED966;
+  stroke-width: 3;
+  stroke-dasharray: 3 6;
+}
+
+.grid path {
+  stroke-width: 0;
+}
+
+.grid .tick line {
+  stroke: #9FAAAE;
+  stroke-opacity: 0.3;
+}
+
+text.divergence {
+  font-size: 14px;
+  fill: #FFFFFF;
+  font-family: 'Open Sans', sans-serif;
+}
+
+text.value {
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+
+}
+
+text.title {
+  font-size: 22px;
+  font-weight: 600;
+  font-family: 'Open Sans', sans-serif;
+}
+
+text.label {
+  font-size: 14px;
+  font-weight: 400;
+  font-family: 'Open Sans', sans-serif;
+}
+
+text.source {
+  font-size: 10px;
+}
+
+/* heatmap */
+
+div#chart {
+  position: relative;
+  top: -610px;
+  left: 541px;
+}
+
+svg *::selection {
+   background : transparent;
+}
+
+svg *::-moz-selection {
+   background:transparent;
+}
+
+svg *::-webkit-selection {
+   background:transparent;
+}
+rect.selection {
+  stroke          : #333;
+  stroke-dasharray: 4px;
+  stroke-opacity  : 0.5;
+  fill            : transparent;
+}
+
+rect.cell-border {
+  stroke: grey;
+  stroke-width:0.6px;
+}
+
+rect.cell-selected {
+  stroke: rgb(51,102,153);
+  stroke-width:0.5px;
+}
+
+rect.cell-hover {
+  stroke: black;
+  stroke-width:1px;
+}
+
+text.mono {
+  font-size: 9pt;
+  font-family: 'Open Sans', sans-serif;
+  fill: white;
+}
+
+text.text-selected {
+  fill: green;
+}
+
+text.text-highlight {
+  fill: green;
+}
+text.text-hover {
+  fill: white;
+}
+
+#tooltip {
+  position: absolute;
+  width: 165;
+  height: auto;
+  padding: 10px;
+  background-color: white;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+#tooltip.hidden {
+  display: none;
+}
+
+#tooltip p {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+div#drop_demo_hm {
+  position: relative;
+  top: -610px;
+  left: 541px;
+  width: 500px;
+  background-color: #2F4A6D;
+}
+
+#order {
+  font-family: 'Open Sans', sans-serif;
+}
