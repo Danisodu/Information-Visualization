@@ -1,18 +1,19 @@
+@import url(http://www.jasondavies.com/parallel-sets/d3.parsets.css);
 
 body {
   font-family: 'Open Sans', sans-serif;
-  background-color: #2F4A6D;
+  white-space: pre-line;
 }
 
 div#layout {
   position: relative;
-  top: -10px;
-  left: -462px;
+  top: 10%;
+  left: -25%;
   text-align: center;
 }
 
 div#container {
-  width: 550px;
+  width: 530px;
   height: 600px;
   margin: auto;
 }
@@ -28,7 +29,7 @@ svg {
 
 text {
   font-size: 12px;
-  fill: white;
+  font-family: 'Open Sans', sans-serif;
 }
 
 path {
@@ -56,26 +57,17 @@ line#limit {
 
 text.divergence {
   font-size: 14px;
-  fill: #FFFFFF;
-  font-family: 'Open Sans', sans-serif;
+  fill: black;
 }
 
 text.value {
   font-size: 14px;
-  font-family: 'Open Sans', sans-serif;
 
-}
-
-text.title {
-  font-size: 22px;
-  font-weight: 600;
-  font-family: 'Open Sans', sans-serif;
 }
 
 text.label {
   font-size: 14px;
   font-weight: 400;
-  font-family: 'Open Sans', sans-serif;
 }
 
 text.source {
@@ -86,8 +78,8 @@ text.source {
 
 div#chart {
   position: relative;
-  top: -610px;
-  left: 541px;
+  top: 15%;
+  left: 5%;
 }
 
 svg *::selection {
@@ -109,8 +101,8 @@ rect.selection {
 }
 
 rect.cell-border {
-  stroke: grey;
-  stroke-width:0.6px;
+  stroke: white;
+  stroke-width:2px;
 }
 
 rect.cell-selected {
@@ -124,9 +116,7 @@ rect.cell-hover {
 }
 
 text.mono {
-  font-size: 9pt;
-  font-family: 'Open Sans', sans-serif;
-  fill: white;
+  font-size: 12pt;
 }
 
 text.text-selected {
@@ -136,15 +126,17 @@ text.text-selected {
 text.text-highlight {
   fill: green;
 }
-text.text-hover {
-  fill: white;
+
+text.title {
+  font-size: 20px;
+  font-weight: 600;
 }
 
 #tooltip {
   position: absolute;
-  width: 165;
+  width: auto;
   height: auto;
-  padding: 10px;
+  padding: 5;
   background-color: white;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -161,17 +153,14 @@ text.text-hover {
 
 #tooltip p {
   margin: 0;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 20px;
 }
 
-div#drop_demo_hm {
-  position: relative;
-  top: -610px;
-  left: 541px;
-  width: 500px;
-  background-color: #2F4A6D;
+#demo-info-slider {
+  position: absolute;
+  top:110%;
+  left: 45%;
 }
 
 #order {

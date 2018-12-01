@@ -18,9 +18,10 @@ var demo_info_values = {'Education': ["Less than High School",
 var positions = {"Education": [1,2,3,4],
                   "PersonalIncome": [1,2,3,4,5,6,7],
                   "SelectiveLeave": [0,1,2,3],
-                  "EmploymentStatus": [0,1,2,3,4,5,6,7]};
+                  "EmploymentStatus": [1,2,3]};
 var actualDrug = "Cocaine";
 var demoInfo = "Education";
+
 
 d3.csv("CocaineEducation.csv").then(function(data) {
   data.forEach(function (d){
@@ -69,20 +70,12 @@ function init() {
         .data(dataset)
         .enter()
         .append("rect")
-        .attr("x", function(d) { return hccol.indexOf(d.col) * cellSize; })
+        .attr("x", function(d) { return hccol.indexOf(d.col) * cellSize + 160; })
         .attr("y", function(d) { return hcrow.indexOf(d.row) * cellSize; })
         .attr("class", function(d){return "cell cell-border cr"+(0)+" cc"+(0);})
         .attr("width", cellSize)
         .attr("height", cellSize)
-        .style("fill", function(d) { return colorScale(Math.floor(d.value/10)+1); })
-        /* .on("click", function(d) {
-               var rowtext=d3.select(".r"+(d.row-1));
-               if(rowtext.classed("text-selected")==false){
-                   rowtext.classed("text-selected",true);
-               }else{
-                   rowtext.classed("text-selected",false);
-               }
-        })*/
+        .style("fill", function(d) { return colors[Math.floor(d.value/10)]; })
         .on("mouseover", function(d){
                //highlight text
                d3.select(this).classed("cell-hover",true);
@@ -91,10 +84,11 @@ function init() {
 
                //Update the tooltip position and value
                d3.select("#tooltip")
-                 .style("left", (d3.event.pageX+10) + "px")
-                 .style("top", (d3.event.pageY-10) + "px")
+                  .style("left", (d3.event.pageX+10) + "px")
+                  .style("top", (d3.event.pageY-10) + "px")
                  .select("#value")
-                 .text("User Type: "+rowLabel[d.row]+ "\n"+demoInfo+": "+demo_info_values[demoInfo][positions[demoInfo].indexOf(d.col)] +"\nDistribution: "+d.value+"%");
+                 .attr("data-html", "true")
+                 .text("User Type: " + rowLabel[d.row] + "\n" +demoInfo+": "+demo_info_values[demoInfo][positions[demoInfo].indexOf(d.col)] +"\n Distribution: "+d.value+"%");
                //Show the tooltip
                d3.select("#tooltip").classed("hidden", false);
         })
@@ -107,7 +101,6 @@ function init() {
         ;
 }
 
-
 function update(){
   colLabel = demo_info_values[demoInfo];
   hccol = positions[demoInfo];
@@ -118,15 +111,15 @@ function update(){
   svg_hm.selectAll('.cell')
         .remove();
 
-  var colLabels = svg_hm.selectAll(".colLabels")
+  var colLabels = svg_hm.selectAll(".colLabel")
       .data(colLabel)
       .enter()
       .append("text")
       .text(function (d) { return d; })
-      .attr("y", function (d, i) { return i * cellSize; })
-      .attr("x", 0)
+      .attr("y", function (d, i) { return i * 26 + 120; })
+      .attr("x",  function (d, i) { return i * 26 + 115; })
       .style("text-anchor", "left")
-      .attr("transform", "translate("+cellSize/2 + ",-12) rotate (-90)")
+      .attr("transform", "translate("+cellSize/2 + ",-12) rotate (-45)")
       .attr("class",  function (d,i) { return "colLabel mono c"+i;} )
       .on("mouseover", function(d) {d3.select(this).classed("text-hover",true);})
       .on("mouseout" , function(d) {d3.select(this).classed("text-hover",false);})
