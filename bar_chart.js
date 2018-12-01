@@ -65,12 +65,12 @@ const chart = svg.append('g')
 
 const xScale = d3.scaleLinear()
   .range([height, 0])
-  .domain([200, 0]);
+  .domain([180, 0]);
 
 const yScale = d3.scaleBand()
   .range([0, width])
   .domain(sample.map((s) => s.language))
-  .padding(0.4)
+  .padding(0.2)
 
 // vertical grid lines
 // const makeXLines = () => d3.axisBottom()
