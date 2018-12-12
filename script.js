@@ -28,7 +28,7 @@ var vis = d3.select("#vis").append("svg")
     .attr("width", parallel_sets.width())
     .attr("height", parallel_sets.height());
 
-d3.csv("DemoInfoForDrugs.csv").then(function(csv) {
+d3.csv("CocaineDemoInfo.csv").then(function(csv) {
   vis.datum(csv).call(parallel_sets);
 });
 
@@ -45,10 +45,10 @@ d3.csv("CocaineEducation.csv").then(function(data) {
 
   });
 
-function curves() {
+/*function curves() {
   var t = vis.transition().duration(500);
   t.call(chart.tension(this.checked ? .5 : 1));
-}
+}*/
 
 function read_csv(fname){
     d3.csv(fname).then(function(data) {
@@ -63,7 +63,6 @@ function read_csv(fname){
         update();
       });
 
-      console.log(dataset);
 }
 
 function updateDrug(name){
@@ -100,10 +99,8 @@ function init() {
 
                //Update the tooltip position and value
                d3.select("#tooltip")
-                  .style("left", (d3.event.pageX+10) + "px")
-                  .style("top", (d3.event.pageY-10) + "px")
-                 .select("#value")
-                 .attr("data-html", "true")
+                  .style("left", (d3.event.pageX+30) + "px")
+                  .style("top", (d3.event.pageY-20) + "px")
                  .text("User Type: " + rowLabel[d.row] + "\n" +demoInfo+": "+demo_info_values[demoInfo][positions[demoInfo].indexOf(d.col)] +"\n Distribution: "+d.value+"%");
                //Show the tooltip
                d3.select("#tooltip").classed("hidden", false);
@@ -142,4 +139,9 @@ function update(){
       ;
 
       init();
+
+    d3.csv(actualDrug+"DemoInfo.csv").then(function(csv) {
+      vis.datum(csv).call(parallel_sets);
+      console.log(csv);
+    });
 }

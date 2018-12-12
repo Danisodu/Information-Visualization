@@ -7,7 +7,6 @@
 
     <title>Drug Consumption in the USA</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="http://www.jasondavies.com/parallel-sets/d3.parsets.css">
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <script src="https://d3js.org/d3.v5.min.js"></script>
@@ -37,13 +36,10 @@
   </div>
 
   <div id="tooltip" class="hidden">
-          <p><span id="value"></p>
   </div>
 
-  <div id="vis"></div>
-
-  <div class="options">
-    <span class="curves"><label for="curved"><input type="checkbox" id="curved" onchange="curves.call(this)"> Curves?</label></span>
+  <div id="vis" style='width:1050px; height:790px;'>
+    <center><h2 style="font-size: 20px">Demographic Info by Drug</h2></center>
   </div>
 
   <script src="bar_chart.js"></script>

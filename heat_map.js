@@ -9,7 +9,7 @@ var margin_hm = { top: 150, right: 10, bottom: 50, left: 100 },
   hccol = [1,2,3,4], // change to gene name or probe id
   legendElementwidth_hm = 50,
   colorBuckets = 11,
-  colors = ['#ffffd9','#edf8b1','#c7e9b4','#7fcdbb','#41b6c4','#1d91c0','#225ea8','#253494','#081d58','#000066'];
+  colors = ['#ffffd9','#edf8b1','#c7e9b4','#7fcdbb','#41b6c4','#1d91c0','#225ea8','#253494','#081d58','#020817'];
   colLabel = ["Less than High School","High School Graduate","Some College Credit","College Graduate"],
   rowLabel = ['Non-user', 'Light-User', 'User', 'Heavy-User']; // change to contrast name
 

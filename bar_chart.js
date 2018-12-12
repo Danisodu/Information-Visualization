@@ -122,7 +122,7 @@ barGroups
     }
 
     d3.select(this)
-      .style('fill', 'green')
+      .style('fill', '#081d58')
       .attr('opacity', 0.6)
 
     shite = d3.select(this)
@@ -184,7 +184,7 @@ barGroups
 
   })
 
-svg.select('.bar1').style('fill', 'green')
+svg.select('.bar1').style('fill', '#081d58')
 shite = d3.select('.bar1')
 
 //barGroups
