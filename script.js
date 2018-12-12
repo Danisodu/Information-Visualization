@@ -16,12 +16,21 @@ var demo_info_values = {'Education': ["Less than High School",
                                             "21-31"],
                         "EmploymentStatus": ["Full-Time","Part-Time","Unemployed"]};
 var positions = {"Education": [1,2,3,4],
-                  "PersonalIncome": [1,2,3,4,5,6,7],
-                  "SelectiveLeave": [0,1,2,3],
-                  "EmploymentStatus": [1,2,3]};
+                 "PersonalIncome": [1,2,3,4,5,6,7],
+                 "SelectiveLeave": [1,2,3,4,],
+                 "EmploymentStatus": [1,2,3]};
 var actualDrug = "Cocaine";
 var demoInfo = "Education";
+var parallel_sets = d3.parsets()
+                    .dimensions(["Sex", "Race", "Education","Employment Status"]);
 
+var vis = d3.select("#vis").append("svg")
+    .attr("width", parallel_sets.width())
+    .attr("height", parallel_sets.height());
+
+d3.csv("DemoInfoForDrugs.csv").then(function(csv) {
+  vis.datum(csv).call(parallel_sets);
+});
 
 d3.csv("CocaineEducation.csv").then(function(data) {
   data.forEach(function (d){
@@ -36,6 +45,11 @@ d3.csv("CocaineEducation.csv").then(function(data) {
 
   });
 
+function curves() {
+  var t = vis.transition().duration(500);
+  t.call(chart.tension(this.checked ? .5 : 1));
+}
+
 function read_csv(fname){
     d3.csv(fname).then(function(data) {
       data.forEach(function (d){
@@ -48,6 +62,8 @@ function read_csv(fname){
         dataset = data;
         update();
       });
+
+      console.log(dataset);
 }
 
 function updateDrug(name){
@@ -71,7 +87,7 @@ function init() {
         .enter()
         .append("rect")
         .attr("x", function(d) { return hccol.indexOf(d.col) * cellSize + 160; })
-        .attr("y", function(d) { return hcrow.indexOf(d.row) * cellSize; })
+        .attr("y", function(d) { return hcrow.indexOf(d.row) * cellSize ; })
         .attr("class", function(d){return "cell cell-border cr"+(0)+" cc"+(0);})
         .attr("width", cellSize)
         .attr("height", cellSize)

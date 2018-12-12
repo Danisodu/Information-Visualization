@@ -7,10 +7,11 @@
 
     <title>Drug Consumption in the USA</title>
     <link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="http://www.jasondavies.com/parallel-sets/d3.parsets.css">
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <script src="https://d3js.org/d3.v5.min.js"></script>
+
     <center><h1>Drug Consumption in the USA</h1></center>
   </head>
 
@@ -34,14 +35,20 @@
         </select>
     </div>
   </div>
+
   <div id="tooltip" class="hidden">
           <p><span id="value"></p>
   </div>
 
+  <div id="vis"></div>
 
+  <div class="options">
+    <span class="curves"><label for="curved"><input type="checkbox" id="curved" onchange="curves.call(this)"> Curves?</label></span>
+  </div>
 
   <script src="bar_chart.js"></script>
   <script src="heat_map.js"></script>
+  <script src="parallel_sets.js"></script>
   <script src="script.js"></script>
 
 </body>

@@ -1,5 +1,3 @@
-@import url(http://www.jasondavies.com/parallel-sets/d3.parsets.css);
-
 body {
   font-family: 'Open Sans', sans-serif;
   white-space: pre-line;
@@ -7,13 +5,13 @@ body {
 
 div#layout {
   position: relative;
-  top: 10%;
-  left: -25%;
+  top: -18%;
+  left: -29%;
   text-align: center;
 }
 
 div#container {
-  width: 530px;
+  width: 570px;
   height: 600px;
   margin: auto;
 }
@@ -28,7 +26,7 @@ svg {
 }
 
 text {
-  font-size: 12px;
+  font-size: 14px;
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -66,19 +64,19 @@ text.value {
 }
 
 text.label {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 400;
 }
 
 text.source {
-  font-size: 10px;
+  font-size: 14px;
 }
 
 /* heatmap */
 
 div#chart {
   position: relative;
-  top: 15%;
+  top: -25%;
   left: 5%;
 }
 
@@ -116,7 +114,7 @@ rect.cell-hover {
 }
 
 text.mono {
-  font-size: 12pt;
+  font-size: 11pt;
 }
 
 text.text-selected {
@@ -159,10 +157,18 @@ text.title {
 
 #demo-info-slider {
   position: absolute;
-  top:110%;
+  top:105%;
   left: 45%;
 }
 
 #order {
   font-family: 'Open Sans', sans-serif;
+}
+
+#vis {
+  position: relative;
+   top: -145%;
+  left: 42%;
+  /*top: -125%;
+  left: 45%;*/
 }

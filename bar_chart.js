@@ -56,7 +56,7 @@ const svg = d3.select('svg');
 const svgContainer = d3.select('#container');
 var shite = null;
 
-const margin = 80;
+const margin = 100;
 const width = 600 - 2 * margin;
 const height = 600 - 2 * margin;
 
@@ -207,7 +207,7 @@ svg
 svg.append('text')
   .attr('class', 'label')
   .attr('x', width / 2 + margin)
-  .attr('y', height + margin * 1.7)
+  .attr('y', height + margin *1.5)
   .attr('text-anchor', 'middle')
   .text('Price per gram(\$)')
 
