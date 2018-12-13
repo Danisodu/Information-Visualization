@@ -2,7 +2,7 @@ const sample = [
   {
     language: 'Heroin',
     value: 175,
-    color: '#007bc8'
+    color: '#c7e9b4'
   },
   {
     language: 'Cocaine',
@@ -12,27 +12,27 @@ const sample = [
   {
     language: 'Meth',
     value: 80,
-    color: '#507dca'
+    color: '#c7e9b4'
   },
   {
     language: 'Crack',
     value: 75,
-    color: '#fbcb39'
+    color: '#c7e9b4'
   },
   {
     language: 'Ketamine',
     value: 25,
-    color: '#ff6e52'
+    color: '#c7e9b4'
   },
   {
     language: 'PCP',
     value: 25,
-    color: '#f9de3f'
+    color: '#c7e9b4'
   },
   {
     language: 'Ecstasy',
     value: 20,
-    color: '#65cedb'
+    color: '#c7e9b4'
   },
   {
     language: 'Mushrooms',
@@ -118,7 +118,7 @@ barGroups
 
     updateDrug(actual.language);
     if (shite !== null) {
-      shite.style('fill', "#80cbc4");
+      shite.style('fill', "#225ea8");
     }
 
     d3.select(this)

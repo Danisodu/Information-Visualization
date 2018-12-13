@@ -22,7 +22,8 @@ svg {
 }
 
 .bar {
-  fill: #80cbc4;
+  /*fill: #4a91d8;*/
+  fill: #225ea8;
 }
 
 text {
@@ -108,8 +109,9 @@ rect.cell-selected {
 }
 
 rect.cell-hover {
-  stroke: black;
-  stroke-width:1px;
+  opacity: 0.5;
+  /*stroke: black;
+  stroke-width:1px;*/
 }
 
 text.mono {
@@ -179,9 +181,9 @@ text.title {
 .ribbon path.active { fill-opacity: .9; }
 .ribbon-mouse path { fill-opacity: 0; }
 
-.category-0 { fill: #c7e9b4; stroke: #c7e9b4; }
-.category-1 { fill: #41b6c4; stroke: #41b6c4; }
-.category-2 { fill: #225ea8; stroke: #225ea8; }
+.category-1 { fill: #c7e9b4; stroke: #c7e9b4; }
+.category-2 { fill: #41b6c4; stroke: #41b6c4; }
+.category-0 { fill: #225ea8; stroke: #225ea8; }
 .category-3 { fill: #081d58; stroke: #081d58; }
 .category-4 { fill: #9467bd; stroke:  #9467bd; }
 .category-5 { fill: #8c564b; stroke: #8c564b; }
