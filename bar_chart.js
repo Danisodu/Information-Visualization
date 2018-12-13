@@ -136,8 +136,6 @@ barGroups
       .transition()
       .duration(300)
       .attr('opacity', 0.6)
-      .attr('y', (a) => yScale(a.language) - 5)
-      .attr('height', yScale.bandwidth() + 10)
 
     const x = xScale(actual.value)
 
@@ -173,10 +171,6 @@ barGroups
       .transition()
       .duration(300)
       .attr('opacity', 1)
-      .attr('x', (g) => 0)
-      .attr('y', (g) => yScale(g.language))
-      .attr('width', (g) => xScale(g.value))
-      .attr('height', yScale.bandwidth())
 
     chart.selectAll('#limit').remove()
     chart.selectAll('.divergence').remove()

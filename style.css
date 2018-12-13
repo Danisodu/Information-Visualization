@@ -35,11 +35,10 @@ text {
 }*/
 
 line {
-  stroke: gray;
+  stroke: grey;
 }
 
 line#limit {
-  stroke: #FED966;
   stroke-width: 3;
   stroke-dasharray: 3 6;
 }

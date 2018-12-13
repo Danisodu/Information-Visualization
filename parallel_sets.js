@@ -8,7 +8,7 @@
         tooltip_ = defaultTooltip,
         categoryTooltip = defaultCategoryTooltip,
         value_,
-        spacing = 20,
+        spacing = 15,
         width,
         height,
         tension = 1,
@@ -648,8 +648,6 @@
     }
   }
 
-  function identity(d) { return d; }
-
   function translateY(d) { return "translate(0," + d.y + ")"; }
 
   function defaultTooltip(d) {
@@ -659,7 +657,7 @@
       if (d.name) path.unshift(d.name);
       d = d.parent;
     }
-    return path.join(" → ") + "<br>" + comma(count) + " (" + percent(count / d.count) + ")";
+    return path.join(" → ") + "<br>" + count + " (" + Math.floor((count / d.count)*100) + "%)";
   }
 
   function defaultCategoryTooltip(d) {
