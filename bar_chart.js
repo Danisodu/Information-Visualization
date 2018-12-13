@@ -20,40 +20,45 @@ const sample = [
     color: '#c7e9b4'
   },
   {
-    language: 'Ketamine',
-    value: 25,
-    color: '#c7e9b4'
-  },
-  {
-    language: 'PCP',
-    value: 25,
-    color: '#c7e9b4'
-  },
-  {
-    language: 'Ecstasy',
-    value: 20,
-    color: '#c7e9b4'
-  },
-  {
-    language: 'Mushrooms',
-    value: 20,
-    color: '#5d2f8e'
-  },
-  {
-    language: 'Marijuana',
-    value: 15,
-    color: '#000000'
-  },
-  {
-    language: 'LSD',
-    value: 12.5,
-    color: '#008fc9'
-  },
+     language: 'Inhalant',
+     value: 15,
+     color: '#c7e9b4'
+   },
+   {
+     language: 'Stimulant',
+     value: 15,
+     color: '#c7e9b4'
+   },
+   {
+     language: 'Sedative',
+     value: 15,
+     color: '#c7e9b4'
+   },
+   {
+     language: 'Marijuana',
+     value: 15,
+     color: '#000000'
+   },
+   {
+     language: 'PainReliever',
+     value: 15,
+     color: '#008fc9'
+   },
+   {
+     language: 'Hallucinogen',
+     value: 10,
+     color: '#5d2f8e'
+   },
+   {
+     language: 'Tranquilizer',
+     value: 5,
+     color: '#c7e9b4'
+   }
 ];
 
-var actualDrug = "Cocaine"
+var actualDrug = "Cocaine";
 const svg = d3.select('svg');
-const svgContainer = d3.select('#container');
+const svg_bc = d3.select('#bar_chart');
 var shite = null;
 
 const margin = 100;
@@ -118,12 +123,11 @@ barGroups
 
     updateDrug(actual.language);
     if (shite !== null) {
-      shite.style('fill', "#225ea8");
+      shite.style('fill', "#7fcdbb");
     }
 
     d3.select(this)
-      .style('fill', '#081d58')
-      .attr('opacity', 0.6)
+      .style('fill', '#225ea8')
 
     shite = d3.select(this)
   })
@@ -178,7 +182,7 @@ barGroups
 
   })
 
-svg.select('.bar1').style('fill', '#081d58')
+svg.select('.bar1').style('fill', '#225ea8')
 shite = d3.select('.bar1')
 
 //barGroups
@@ -208,6 +212,6 @@ svg.append('text')
 svg.append('text')
   .attr('class', 'title')
   .attr('x', width / 2 + margin)
-  .attr('y', 40)
+  .attr('y', 70)
   .attr('text-anchor', 'middle')
-  .text('Drug\'s average price per gram')
+  .text('Average price per gram')

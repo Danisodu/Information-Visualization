@@ -3,13 +3,13 @@ var demo_info_values = {'Education': ["Less than High School",
                                       "High School Graduate",
                                       "Some College Credit",
                                       "College Graduate"],
-                        "PersonalIncome": ["<$10,000",
-                                            "$10,000-$19,999",
-                                            "$20,000-$29,999",
-                                            "$30,000-$39,999",
-                                            "$40,000-$49,999",
-                                            "$50,000-$74,999",
-                                            ">$75,000"],
+                        "PersonalIncome": ["<$10k",
+                                            "$10k-$20k",
+                                            "$20k-$30k",
+                                            "$30k-$40k",
+                                            "$40k-$50k",
+                                            "$50k-$75k",
+                                            ">$75k"],
                         "SelectiveLeave": ["0-6",
                                             "7-13",
                                             "14-20",
@@ -27,6 +27,13 @@ var parallel_sets = d3.parsets()
 var vis = d3.select("#vis").append("svg")
     .attr("width", parallel_sets.width())
     .attr("height", parallel_sets.height());
+
+vis.append('text')
+  .attr('class', 'title')
+  .attr('x', width + 40)
+  .attr('y',20)
+  .attr('text-anchor', 'middle')
+  .text('Demographic Info by Drug');
 
 d3.csv("CocaineDemoInfo.csv").then(function(csv) {
   vis.datum(csv).call(parallel_sets);
@@ -85,8 +92,8 @@ function init() {
         .data(dataset)
         .enter()
         .append("rect")
-        .attr("x", function(d) { return hccol.indexOf(d.col) * cellSize + 160; })
-        .attr("y", function(d) { return hcrow.indexOf(d.row) * cellSize ; })
+        .attr("x", function(d) { return hccol.indexOf(d.col) * cellSize + 170; })
+        .attr("y", function(d) { return hcrow.indexOf(d.row) * cellSize + 40; })
         .attr("class", function(d){return "cell cell-border cr"+(0)+" cc"+(0);})
         .attr("width", cellSize)
         .attr("height", cellSize)
@@ -129,8 +136,8 @@ function update(){
       .enter()
       .append("text")
       .text(function (d) { return d; })
-      .attr("y", function (d, i) { return i * 26 + 120; })
-      .attr("x",  function (d, i) { return i * 26 + 115; })
+      .attr("y", function (d, i) { return i * (cellSize-15) + 120; })
+      .attr("x",  function (d, i) { return i * (cellSize-15) + 115; })
       .style("text-anchor", "left")
       .attr("transform", "translate("+cellSize/2 + ",-12) rotate (-45)")
       .attr("class",  function (d,i) { return "colLabel mono c"+i;} )
@@ -142,6 +149,5 @@ function update(){
 
     d3.csv(actualDrug+"DemoInfo.csv").then(function(csv) {
       vis.datum(csv).call(parallel_sets);
-      console.log(csv);
     });
 }

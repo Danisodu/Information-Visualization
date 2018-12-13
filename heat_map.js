@@ -1,5 +1,5 @@
 var margin_hm = { top: 150, right: 10, bottom: 50, left: 100 },
-  cellSize=35;
+  cellSize=49;
   col_number=4;
   row_number=4;
   width_hm = cellSize*col_number*3, // - margin_hm.left - margin_hm.right,
@@ -13,13 +13,18 @@ var margin_hm = { top: 150, right: 10, bottom: 50, left: 100 },
   colLabel = ["Less than High School","High School Graduate","Some College Credit","College Graduate"],
   rowLabel = ['Non-user', 'Light-User', 'User', 'Heavy-User']; // change to contrast name
 
-
   var svg_hm = d3.select("#chart").append("svg")
       .attr("width_hm", width_hm + margin_hm.left + margin_hm.right)
       .attr("height_hm", height_hm + margin_hm.top + margin_hm.bottom)
       .append("g")
-      .attr("transform", "translate(" + margin_hm.left + "," + margin_hm.top + ")")
-      ;
+      .attr("transform", "translate(" + margin_hm.left + "," + margin_hm.top + ")");
+
+  svg_hm.append('text')
+    .attr('class', 'title')
+    .attr('x', width / 2)
+    .attr('y', -130)
+    .attr('text-anchor', 'middle')
+    .text('Demographic Info by User Type');
 
   var colorScale = d3.scaleOrdinal()
       .domain([1,2,3,4,5,6,7,8,9,10])
@@ -31,27 +36,26 @@ var margin_hm = { top: 150, right: 10, bottom: 50, left: 100 },
       .append("text")
       .text(function (d) { return d; })
       .attr("x", 160)
-      .attr("y", function (d, i) { return hcrow.indexOf(i) * cellSize; })
+      .attr("y", function (d, i) { return hcrow.indexOf(i) * cellSize + 35; })
       .style("text-anchor", "end")
       .attr("transform", "translate(-6," + cellSize / 1.5 + ") ")
       .attr("class", function (d,i) { return "rowLabel mono r"+i;} )
       .on("mouseover", function(d) {d3.select(this).classed("text-hover",true); })
-      .on("mouseout" , function(d) {d3.select(this).classed("text-hover",false); })
-      ;
+      .on("mouseout" , function(d) {d3.select(this).classed("text-hover",false); });
 
-    var colLabels = svg_hm.selectAll(".colLabel")
-        .data(colLabel)
-        .enter()
-        .append("text")
-        .text(function (d) { return d; })
-        .attr("y", function (d, i) { return i * 26 + 120; })
-        .attr("x",  function (d, i) { return i * 26 + 115; })
-        .style("text-anchor", "left")
-        .attr("transform", "translate("+cellSize/2 + ",-12) rotate (-45)")
-        .attr("class",  function (d,i) { return "colLabel mono c"+i;} )
-        .on("mouseover", function(d) {d3.select(this).classed("text-hover",true);})
-        .on("mouseout" , function(d) {d3.select(this).classed("text-hover",false);})
-        ;
+  var colLabels = svg_hm.selectAll(".colLabel")
+      .data(colLabel)
+      .enter()
+      .append("text")
+      .text(function (d) { return d; })
+      .attr("y", function (d, i) { return i * (cellSize-15) + 160; })
+      .attr("x",  function (d, i) { return i * (cellSize-15) + 115; })
+      .style("text-anchor", "left")
+      .attr("transform", "translate("+cellSize/2 + ",-12) rotate (-45)")
+      .attr("class",  function (d,i) { return "colLabel mono c"+i;} )
+      .on("mouseover", function(d) {d3.select(this).classed("text-hover",true);})
+      .on("mouseout" , function(d) {d3.select(this).classed("text-hover",false);})
+      ;
 
   var legend = svg_hm.selectAll(".legend")
       .data(["<10%",'10-19%','20-29%','30-39%','40-49%','50-59%','60-69%','70-79%','80-89%','90-100%'])
@@ -63,11 +67,11 @@ var margin_hm = { top: 150, right: 10, bottom: 50, left: 100 },
     .text(function(d) { return d; })
     .attr("width_hm", legendElementwidth_hm)
     .attr("x", -72)
-    .attr("y", function (d, i) { return 20*i - 45; })
+    .attr("y", function (d, i) { return 20*i+53; })
 
-    legend.append("rect")
+  legend.append("rect")
     .attr("x",-100)
-    .attr("y", function (d, i) { return 20*i - 62; })
+    .attr("y", function (d, i) { return 20*i +40; })
     .attr('width',20)
     .attr('height', 20)
     .style("fill", function(d, i) { return colors[i]; });

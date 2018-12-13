@@ -7,24 +7,19 @@
 
     <title>Drug Consumption in the USA</title>
     <link rel="stylesheet" href="style.css">
-
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <script src="https://d3js.org/d3.v5.min.js"></script>
-
-    <center><h1>Drug Consumption in the USA</h1></center>
+    <h1>Drug Consumption in the USA</h1>
+    <hr>
   </head>
 
   <body>
 
-    <div id='layout'>
-      <div id='container'>
+    <div id='bar_chart'>
         <svg />
-      </div>
     </div>
 
-  <div id="chart" style='width:570px; height:410px;'>
-    <center><h2 style="font-size: 20px">Demographic Info by User Type</h2></center>
-
+  <div id="chart">
     <div id='demo-info-slider'>
         <select id="order" onchange='updateSelectedDemo(this)'>
           <option value="Education">Education</option>
@@ -38,8 +33,7 @@
   <div id="tooltip" class="hidden">
   </div>
 
-  <div id="vis" style='width:1050px; height:790px;'>
-    <center><h2 style="font-size: 20px">Demographic Info by Drug</h2></center>
+  <div id="vis">
   </div>
 
   <script src="bar_chart.js"></script>
