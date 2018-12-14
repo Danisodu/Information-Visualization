@@ -6,9 +6,12 @@
     <meta http-equiv="X-UA-Compatible"/>
 
     <title>Drug Consumption in the USA</title>
+
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="node-pie2.js"></script>
+    <script src="node.js"></script>
     <h1>Drug Consumption in the USA</h1>
     <hr>
   </head>
@@ -33,7 +36,13 @@
   <div id="tooltip" class="hidden">
   </div>
 
+  <div id="nodes">
+  </div>
+
   <div id="vis">
+      <!--<div class="options">
+        <span class="curves"><label for="curved"><input type="checkbox" id="curved" onchange="curves(this)"> Curves?</label></span>
+      </div>-->
   </div>
 
   <script src="bar_chart.js"></script>

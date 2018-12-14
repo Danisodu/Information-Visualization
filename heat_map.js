@@ -1,5 +1,5 @@
 var margin_hm = { top: 150, right: 10, bottom: 50, left: 100 },
-  cellSize=49;
+  cellSize=35;
   col_number=4;
   row_number=4;
   width_hm = cellSize*col_number*3, // - margin_hm.left - margin_hm.right,
@@ -48,8 +48,8 @@ var margin_hm = { top: 150, right: 10, bottom: 50, left: 100 },
       .enter()
       .append("text")
       .text(function (d) { return d; })
-      .attr("y", function (d, i) { return i * (cellSize-15) + 160; })
-      .attr("x",  function (d, i) { return i * (cellSize-15) + 115; })
+      .attr("y", function (d, i) { return i * (cellSize-8) + 150; })
+      .attr("x",  function (d, i) { return i * (cellSize-8) + 90; })
       .style("text-anchor", "left")
       .attr("transform", "translate("+cellSize/2 + ",-12) rotate (-45)")
       .attr("class",  function (d,i) { return "colLabel mono c"+i;} )
@@ -66,12 +66,12 @@ var margin_hm = { top: 150, right: 10, bottom: 50, left: 100 },
     .attr("class", "mono")
     .text(function(d) { return d; })
     .attr("width_hm", legendElementwidth_hm)
-    .attr("x", -72)
-    .attr("y", function (d, i) { return 20*i+53; })
+    .attr("x", -20)
+    .attr("y", function (d, i) { return 20*i-7; })
 
   legend.append("rect")
-    .attr("x",-100)
-    .attr("y", function (d, i) { return 20*i +40; })
+    .attr("x",-45)
+    .attr("y", function (d, i) { return 20*i -20; })
     .attr('width',20)
     .attr('height', 20)
     .style("fill", function(d, i) { return colors[i]; });

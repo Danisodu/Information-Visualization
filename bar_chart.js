@@ -57,13 +57,13 @@ const sample = [
 ];
 
 var actualDrug = "Cocaine";
-const svg = d3.select('svg');
+const svg = d3.select('svg')
 const svg_bc = d3.select('#bar_chart');
 var shite = null;
 
 const margin = 100;
-const width = 600 - 2 * margin;
-const height = 600 - 2 * margin;
+const width = 600 - 3 * margin;
+const height = 600 - 3 * margin;
 
 const chart = svg.append('g')
   .attr('transform', `translate(${margin}, ${margin})`);
@@ -139,7 +139,7 @@ barGroups
     d3.select(this)
       .transition()
       .duration(300)
-      .attr('opacity', 0.6)
+      .attr('opacity', 0.4)
 
     const x = xScale(actual.value)
 

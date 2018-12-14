@@ -8,7 +8,7 @@
         tooltip_ = defaultTooltip,
         categoryTooltip = defaultCategoryTooltip,
         value_,
-        spacing = 15,
+        spacing = 25,
         width,
         height,
         tension = 1,
@@ -430,7 +430,7 @@
       return value === dispatch ? parsets : value;
     };
 
-    return parsets.value(1).width(960).height(600);
+    return parsets.value(1).width(1200).height(600);
 
     function dimensionFormatName(d, i) {
       return dimensionFormat.call(this, d.name, i);
@@ -607,9 +607,7 @@
     };
   }
 
-  var percent = d3.format("%"),
-      comma = d3.format(",f"),
-      parsetsEase = d3.easeElastic,
+  var parsetsEase = d3.easeElastic,
       parsetsId = 0;
 
   // Construct tree of all category counts for a given ordered list of
@@ -661,7 +659,7 @@
   }
 
   function defaultCategoryTooltip(d) {
-    return d.name + "<br>" + comma(d.count) + " (" + percent(d.count / d.dimension.count) + ")";
+    return d.name + "<br>" + d.count + " (" + Math.floor((d.count / d.dimension.count)*100) + "%)";
   }
 
   function functor(v) {

@@ -1,0 +1,80 @@
+{
+  "nodes": [
+    {
+      "id": "abc", "group": 1, "size": 1, "main":true,
+      "pieChart" : [
+        { "color": "", "percent": 40 },
+        { "color": "", "percent": 20 },
+        { "color": "", "percent": 20 },
+        { "color": "", "percent": 20 }
+      ]
+    },
+    {
+      "id": "b", "group": 2, "size": 0.8,
+      "pieChart" : [
+        { "color": 1, "percent": 33.33 },
+        { "color": 2, "percent": 33.34 },
+        { "color": 3, "percent": 33.33 }
+      ]
+    },
+    {
+      "id": "c", "group": 3, "size": 0.4,
+      "pieChart" : [
+        { "color": 1, "percent": 25 },
+        { "color": 2, "percent": 25 },
+        { "color": 3, "percent": 25 },
+        { "color": 4, "percent": 25 }
+      ]
+    },
+    {
+      "id": "d", "group": 4, "size": 0.5,
+      "pieChart" : [
+        { "color": 1, "percent": 33.33 },
+        { "color": 3, "percent": 33.33 },
+        { "color": 4, "percent": 33.34 }
+      ]
+    },
+    {
+      "id": "e", "group": 1, "size": 0.3,
+      "pieChart" : [
+        { "color": 1, "percent": 100 }
+      ]
+    },
+    {
+      "id": "f", "group": 1, "size": 0.1,
+      "pieChart" : [
+        { "color": 1, "percent": 100 }
+      ]
+    },
+    {
+      "id": "g", "group": 2, "size": 0.8,
+      "pieChart" : [
+        { "color": 2, "percent": 50 },
+        { "color": 3, "percent": 50 }
+      ]
+    },
+    {
+      "id": "h", "group": 3, "size": 0.7,
+      "pieChart" : [
+        { "color": 2, "percent": 50 },
+        { "color": 3, "percent": 50 }
+      ]
+    },
+    {
+      "id": "i", "group": 4, "size": 0.2,
+      "pieChart" : [
+        { "color": 4, "percent": 100 }
+      ]
+    }
+  ],
+  "links": [
+    {"source": "abc", "target": "b", "value": 5},
+    {"source": "abc", "target": "c", "value": 5},
+    {"source": "abc", "target": "d", "value": 5},
+    {"source": "abc", "target": "e", "value": 5},
+    {"source": "abc", "target": "f", "value": 5},
+    {"source": "abc", "target": "g", "value": 5},
+    {"source": "abc", "target": "h", "value": 5},
+    {"source": "abc", "target": "i", "value": 5}
+  ]
+}

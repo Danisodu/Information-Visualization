@@ -21,22 +21,23 @@ var positions = {"Education": [1,2,3,4],
                  "EmploymentStatus": [1,2,3]};
 var actualDrug = "Cocaine";
 var demoInfo = "Education";
-var parallel_sets = d3.parsets()
+
+var sets = d3.parsets()
                     .dimensions(["Sex", "Race", "Education","Employment Status"]);
 
-var vis = d3.select("#vis").append("svg")
-    .attr("width", parallel_sets.width())
-    .attr("height", parallel_sets.height());
+var parallel_sets = d3.select("#vis").append("svg")
+    .attr("width", sets.width())
+    .attr("height", sets.height());
 
-vis.append('text')
+parallel_sets.append('text')
   .attr('class', 'title')
   .attr('x', width + 40)
-  .attr('y',20)
+  .attr('y',10)
   .attr('text-anchor', 'middle')
   .text('Demographic Info by Drug');
 
 d3.csv("CocaineDemoInfo.csv").then(function(csv) {
-  vis.datum(csv).call(parallel_sets);
+  parallel_sets.datum(csv).call(sets);
 });
 
 d3.csv("CocaineEducation.csv").then(function(data) {
@@ -52,10 +53,11 @@ d3.csv("CocaineEducation.csv").then(function(data) {
 
   });
 
-/*function curves() {
-  var t = vis.transition().duration(500);
-  t.call(chart.tension(this.checked ? .5 : 1));
-}*/
+function curves() {
+  var t = parallel_sets.transition().duration(500);
+
+  t.call(sets.tension(this.checked ? .5 : 1));
+}
 
 function read_csv(fname){
     d3.csv(fname).then(function(data) {
@@ -136,8 +138,8 @@ function update(){
       .enter()
       .append("text")
       .text(function (d) { return d; })
-      .attr("y", function (d, i) { return i * (cellSize-15) + 120; })
-      .attr("x",  function (d, i) { return i * (cellSize-15) + 115; })
+      .attr("y", function (d, i) { return i * (cellSize-8) + 150; })
+      .attr("x",  function (d, i) { return i * (cellSize-8) + 90; })
       .style("text-anchor", "left")
       .attr("transform", "translate("+cellSize/2 + ",-12) rotate (-45)")
       .attr("class",  function (d,i) { return "colLabel mono c"+i;} )
@@ -148,6 +150,6 @@ function update(){
       init();
 
     d3.csv(actualDrug+"DemoInfo.csv").then(function(csv) {
-      vis.datum(csv).call(parallel_sets);
+      parallel_sets.datum(csv).call(sets);
     });
 }
