@@ -57,8 +57,7 @@ const sample = [
 ];
 
 var actualDrug = "Cocaine";
-const svg = d3.select('svg')
-const svg_bc = d3.select('#bar_chart');
+const svg = d3.select("#bar_chart").append('svg');
 var shite = null;
 
 const margin = 100;
@@ -66,7 +65,7 @@ const width = 600 - 3 * margin;
 const height = 600 - 3 * margin;
 
 const chart = svg.append('g')
-  .attr('transform', `translate(${margin}, ${margin})`);
+  .attr('transform', `translate(${margin}, 50)`);
 
 const xScale = d3.scaleLinear()
   .range([height, 0])
@@ -193,25 +192,16 @@ shite = d3.select('.bar1')
   //.attr('text-anchor', 'middle')
   //.text((a) => `${a.value}$`)
 
-svg
-  .append('text')
-  .attr('class', 'label')
-  .attr('x', -(height / 2) - margin)
-  .attr('y', margin / 7)
-  .attr('transform', 'rotate(-90)')
-  .attr('text-anchor', 'middle')
-  .text('Drugs')
-
 svg.append('text')
   .attr('class', 'label')
   .attr('x', width / 2 + margin)
-  .attr('y', height + margin *1.5)
+  .attr('y', height + margin)
   .attr('text-anchor', 'middle')
-  .text('Price per gram(\$)')
+  .text('Average price per gram in USD')
 
 svg.append('text')
   .attr('class', 'title')
   .attr('x', width / 2 + margin)
-  .attr('y', 70)
+  .attr('y', 20)
   .attr('text-anchor', 'middle')
   .text('Average price per gram')

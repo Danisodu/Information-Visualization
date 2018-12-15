@@ -23,11 +23,9 @@ var actualDrug = "Cocaine";
 var demoInfo = "Education";
 
 var sets = d3.parsets()
-                    .dimensions(["Sex", "Race", "Education","Employment Status"]);
+            .dimensions(["Sex", "Education","Employment Status"]);
 
-var parallel_sets = d3.select("#vis").append("svg")
-    .attr("width", sets.width())
-    .attr("height", sets.height());
+var parallel_sets = d3.select("#parallel_sets").append("svg");
 
 parallel_sets.append('text')
   .attr('class', 'title')
@@ -90,7 +88,7 @@ function updateSelectedDemo(elm){
 }
 
 function init() {
-  var drawHeatMap = svg_hm.selectAll(".heat")
+  var drawHeatMap = svg_hm.selectAll(".svgHeatMap")
         .data(dataset)
         .enter()
         .append("rect")

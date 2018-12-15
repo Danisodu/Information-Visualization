@@ -1,4 +1,4 @@
-var margin_hm = { top: 150, right: 10, bottom: 50, left: 100 },
+var margin_hm = { top: 15, right: 10, bottom: 50, left: 100 },
   cellSize=35;
   col_number=4;
   row_number=4;
@@ -13,11 +13,9 @@ var margin_hm = { top: 150, right: 10, bottom: 50, left: 100 },
   colLabel = ["Less than High School","High School Graduate","Some College Credit","College Graduate"],
   rowLabel = ['Non-user', 'Light-User', 'User', 'Heavy-User']; // change to contrast name
 
-  var svg_hm = d3.select("#chart").append("svg")
-      .attr("width_hm", width_hm + margin_hm.left + margin_hm.right)
-      .attr("height_hm", height_hm + margin_hm.top + margin_hm.bottom)
+  var svg_hm = d3.select(".svgHeatMap")
       .append("g")
-      .attr("transform", "translate(" + margin_hm.left + "," + margin_hm.top + ")");
+      .attr("transform", "translate(50,150)");
 
   svg_hm.append('text')
     .attr('class', 'title')
@@ -66,11 +64,11 @@ var margin_hm = { top: 150, right: 10, bottom: 50, left: 100 },
     .attr("class", "mono")
     .text(function(d) { return d; })
     .attr("width_hm", legendElementwidth_hm)
-    .attr("x", -20)
+    .attr("x", -5)
     .attr("y", function (d, i) { return 20*i-7; })
 
   legend.append("rect")
-    .attr("x",-45)
+    .attr("x",-32)
     .attr("y", function (d, i) { return 20*i -20; })
     .attr('width',20)
     .attr('height', 20)

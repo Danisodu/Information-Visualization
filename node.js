@@ -20,19 +20,26 @@ d3.json("data.json").then(function(data) {
 
 function gen_vis(){
     var svg = d3.select("#nodes")
-            .append("svg")
-            .attr("width", 700)
-            .attr("height", 600);
+            .append("svg");
+
+    svg.append('text')
+      .attr('class', 'title')
+      .attr('x', width / 2 + 28)
+      .attr('y', 20)
+      .attr('text-anchor', 'middle')
+      .text('Drugs association degree');
 
     simulation = d3.forceSimulation()
             .force("link", d3.forceLink().id(function (d) {
                 return d.id;
             }))
             .force("charge", d3.forceManyBody().strength(-2000))
-            .force("center", d3.forceCenter(960 / 2, 600 / 2));
+            .force("center", d3.forceCenter(960 / 2, 600 / 2))
+;
 
     var link = svg.append("g")
             .attr("class", "links")
+            .attr('transform', `translate(-300, -100)`)
             .selectAll("line")
             .data(graph.links)
             .enter().append("line")
@@ -42,6 +49,7 @@ function gen_vis(){
 
     var node = svg.append("g")
             .attr("class", "nodes")
+            .attr('transform', `translate(-300, -100)`)
             .selectAll("g")
             .data(graph.nodes)
             .enter()
@@ -51,8 +59,6 @@ function gen_vis(){
                     .on("start", dragstarted)
                     .on("drag", dragged)
                     .on("end", dragended));
-
-
 
 
     /*node[0].on("mouseover",function(){console.log("mouse over!")})
