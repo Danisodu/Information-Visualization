@@ -25,14 +25,8 @@ var demoInfo = "Education";
 var sets = d3.parsets()
             .dimensions(["Sex", "Education","Employment Status"]);
 
-var parallel_sets = d3.select("#parallel_sets").append("svg");
-
-parallel_sets.append('text')
-  .attr('class', 'title')
-  .attr('x', width + 40)
-  .attr('y',10)
-  .attr('text-anchor', 'middle')
-  .text('Demographic Info by Drug');
+var parallel_sets = d3.select("#parallel_sets").append("svg")
+        .attr("transform", "translate(0,-52)");
 
 d3.csv("CocaineDemoInfo.csv").then(function(csv) {
   parallel_sets.datum(csv).call(sets);

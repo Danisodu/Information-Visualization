@@ -19,7 +19,7 @@ var margin_hm = { top: 15, right: 10, bottom: 50, left: 100 },
 
   svg_hm.append('text')
     .attr('class', 'title')
-    .attr('x', width / 2)
+    .attr('x', width_hm / 2)
     .attr('y', -130)
     .attr('text-anchor', 'middle')
     .text('Demographic Info by User Type');
