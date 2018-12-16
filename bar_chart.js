@@ -2,61 +2,49 @@ const sample = [
   {
     language: 'Heroin',
     value: 175,
-    color: '#c7e9b4'
   },
   {
     language: 'Cocaine',
     value: 110,
-    color: '#00a2ee'
   },
   {
     language: 'Meth',
     value: 80,
-    color: '#c7e9b4'
   },
   {
     language: 'Crack',
     value: 75,
-    color: '#c7e9b4'
   },
   {
      language: 'Inhalant',
      value: 15,
-     color: '#c7e9b4'
    },
    {
      language: 'Stimulant',
      value: 15,
-     color: '#c7e9b4'
    },
    {
      language: 'Sedative',
      value: 15,
-     color: '#c7e9b4'
    },
    {
      language: 'Marijuana',
      value: 15,
-     color: '#000000'
    },
    {
      language: 'PainReliever',
      value: 15,
-     color: '#008fc9'
    },
    {
      language: 'Hallucinogen',
      value: 10,
-     color: '#5d2f8e'
    },
    {
      language: 'Tranquilizer',
      value: 5,
-     color: '#c7e9b4'
    }
 ];
 
-var actualDrug = "Cocaine";
 const svg = d3.select("#bar_chart").append('svg');
 var shite = null;
 
@@ -88,6 +76,7 @@ chart.append('g')
   .call(d3.axisBottom(xScale));
 
 chart.append('g')
+  .attr("class","yLabel")
   .call(d3.axisLeft(yScale));
 
 // vertical grid lines
@@ -132,6 +121,8 @@ barGroups
   })
 
   .on('mouseenter', function (actual, i) {
+    chart.select(".yLabel").selectAll("g").select("text").classed("text-highlight",function(c,ci){ return ci==i;});
+
     d3.selectAll('.value')
       .attr('opacity', 0)
 
@@ -170,6 +161,8 @@ barGroups
     d3.selectAll('.value')
       .attr('opacity', 1)
 
+    chart.selectAll("g").select("text").classed("text-highlight",false);
+
     d3.select(this)
       .transition()
       .duration(300)
@@ -181,8 +174,8 @@ barGroups
 
   })
 
-svg.select('.bar1').style('fill', '#225ea8')
-shite = d3.select('.bar1')
+svg.select('.bar0').style('fill', '#225ea8')
+shite = d3.select('.bar0')
 
 svg.append('text')
   .attr('class', 'title')

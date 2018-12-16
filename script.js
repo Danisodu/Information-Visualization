@@ -1,5 +1,5 @@
 var translations = {0: -3, 1: cellSize*7.8, 2: cellSize*12.7, 3: cellSize*17.6};
-var actualDrug = "Cocaine";
+var actualDrug = "Heroin";
 var phrase = {2: " have ",
               0: " earn ",
               1: " misssed work for ",
@@ -34,7 +34,6 @@ function read_csv(fname,i){
 
 function updateDrug(name){
   actualDrug = name;
-
   update();
 }
 

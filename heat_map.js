@@ -48,20 +48,18 @@ svg_hm.selectAll(".rowLabel")
     .attr("transform", "translate(-6," + cellSize / 1.5 + ") ")
     .attr("class", function (d,i) { return "rowLabel mono r"+i;} );
 
-//actual cell size
-var c = 27
-//border size
-var b = 4
+var delta_y = Math.abs(Math.sin(22.5) * 31);
+var delta_x = Math.abs(Math.sin(22.5) * 31);
 
 svg_hm.selectAll(".colLabel1")
     .data(colLabel1)
     .enter()
     .append("text")
     .text(function (d) { return d; })
-    .attr("y", function (d, i) { return (i + 1) * ((27/2) + 4); })
-    .attr("x", function (d, i) { return (i + 1) * ((27/2) + 4); })
+    .attr("y", function (d, i) { return i * 1.65 * delta_y + 150; })
+    .attr("x",  function (d, i) { return i * 1.65 * delta_x + 90; })
     .style("text-anchor", "left")
-    .attr("transform", "translate("+ (175) + ",20) rotate (-45)")
+    .attr("transform", "translate("+cellSize/2 + ",-12) rotate (-45)")
     .attr("class",  function (d,i) { return "colLabel mono c"+i;} );
 
 svg_hm.selectAll(".colLabel2")
@@ -69,19 +67,19 @@ svg_hm.selectAll(".colLabel2")
     .enter()
     .append("text")
     .text(function (d) { return d; })
-    .attr("y", function (d, i) { return i * (cellSize-8) + 150; })
-    .attr("x",  function (d, i) { return i * (cellSize-8) + 90; })
+    .attr("y", function (d, i) { return i * 1.65 * delta_y + 150; })
+    .attr("x", function (d, i) { return i * 1.65 * delta_x + 90; })
     .style("text-anchor", "left")
-    .attr("transform", "translate(300,-12) rotate (-45)")
-    .attr("class",  function (d,i) { return "colLabel mono c"+(i+7);} );
+    .attr("transform", "translate(295,-12) rotate (-45)")
+    .attr("class",  function (d,i) { return "colLabel mono c"+(i+4);} );
 
 svg_hm.selectAll(".colLabel3")
     .data(colLabel3)
     .enter()
     .append("text")
     .text(function (d) { return d; })
-    .attr("y", function (d, i) { return i * (cellSize-8) + 150; })
-    .attr("x",  function (d, i) { return i * (cellSize-8) + 90; })
+    .attr("y", function (d, i) { return i * 1.65 * delta_y + 150; })
+    .attr("x", function (d, i) { return i * 1.65 * delta_x + 90; })
     .style("text-anchor", "left")
     .attr("transform", "translate(470,-12) rotate (-45)")
     .attr("class",  function (d,i) { return "colLabel mono c"+(i+11);} );
@@ -91,12 +89,11 @@ svg_hm.selectAll(".colLabel4")
     .enter()
     .append("text")
     .text(function (d) { return d; })
-    .attr("y", function (d, i) { return i * (cellSize-8) + 150; })
-    .attr("x",  function (d, i) { return i * (cellSize-8) + 90; })
+    .attr("y", function (d, i) { return i * 1.65 * delta_y + 150; })
+    .attr("x", function (d, i) { return i * 1.65 * delta_x + 90; })
     .style("text-anchor", "left")
     .attr("transform", "translate(635,-12) rotate (-45)")
     .attr("class",  function (d,i) { return "colLabel mono c"+(i+15);} );
-
 
 svg_hm.selectAll(".colLabel5")
     .data(demoInfo)
