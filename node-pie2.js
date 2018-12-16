@@ -21,6 +21,7 @@ function getOptionOrDefault(key, options, defaultOptions) {
 function drawParentCircle(nodeElement, options) {
     var outerStrokeWidth = getOptionOrDefault('outerStrokeWidth', options);
     var radius = getOptionOrDefault('radius', options);
+    var scale = getOptionOrDefault('scale', options);
     var parentNodeColor = getOptionOrDefault('parentNodeColor', options);
 
     console.log(radius);
@@ -35,11 +36,12 @@ function drawParentCircle(nodeElement, options) {
         .attr("stroke", function (d) {
             return parentNodeColor;
         })
-        .attr("stroke-width", outerStrokeWidth);
+        .attr("stroke-width", outerStrokeWidth * scale);
 }
 
 function drawPieChartBorder(nodeElement, options) {
     var radius = getOptionOrDefault('radius', options);
+    var scale = getOptionOrDefault('scale', options);
     var pieChartBorderColor = getOptionOrDefault('pieChartBorderColor', options);
     var pieChartBorderWidth = getOptionOrDefault('pieChartBorderWidth', options);
 
@@ -47,7 +49,7 @@ function drawPieChartBorder(nodeElement, options) {
         .attr("r", radius)
         .attr("fill", 'transparent')
         .attr("stroke", pieChartBorderColor)
-        .attr("stroke-width", pieChartBorderWidth);
+        .attr("stroke-width", pieChartBorderWidth * scale);
 }
 var colorArray = ["red","black","blue","green"];
 
