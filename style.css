@@ -17,37 +17,37 @@ hr {
 
 #bar_chart {
   position: absolute;
-  top: 12%;
-  left: 1%;
-  width: 50%;
-  height: 70%;
+  top: 9%;
+  left: 2%;
+  width: 40%;
+  height: 45%;
   text-align: center;
   margin: auto;
 }
 
 #heat_map {
   position: absolute;
-  top: 12%;
-  left: 60%;
-  width: 55%;
-  height: 60%;
+  top: 9%;
+  left:30%;
+  width: 65%;
+  height: 40%;
   margin: auto;
 }
 
 #nodes {
   position: absolute;
-  top: 12%;
-  left: 33%;
-  width: 27%;
-  height: 60%;
+  top: 52%;
+  left: 5%;
+  width: 20%;
+  height: 40%;
 }
 
 #parallel_sets {
   position: absolute;
-  top: 80%;
-  left: 0%;
-  width: 100%;
-  height: 86%;
+  top: 52%;
+  left: 35%;
+  width: 60%;
+  height: 45%;
 }
 
 svg {
@@ -160,19 +160,20 @@ text.title {
 }
 
 #tooltip p {
-  font-size: 14px;
+  font-size: 12px;
   line-height: 20px;
 }
 
-#demo-info-slider {
+/*#demo-info-slider {
   position: relative;
   top: -28%;
   left: 31%;
+  width: 20%;
 }
 
 #order {
   font-family: 'Open Sans', sans-serif;
-}
+}*/
 
 .dimension { cursor: ns-resize; }
 .category { cursor: ew-resize; }

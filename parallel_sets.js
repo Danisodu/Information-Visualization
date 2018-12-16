@@ -430,7 +430,7 @@
       return value === dispatch ? parsets : value;
     };
 
-    return parsets.value(1).width(1286).height(560);
+    return parsets.value(1).width(1010).height(400);
 
     function dimensionFormatName(d, i) {
       return dimensionFormat.call(this, d.name, i);

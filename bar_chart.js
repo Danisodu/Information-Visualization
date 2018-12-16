@@ -114,7 +114,7 @@ const barGroups = chart.selectAll()
 barGroups
   .append('rect')
   .attr('class', function(d,i){return 'bar bar' + i;})
-  .attr('x', (g) => 0)
+  .attr('x', (g) => 1)
   .attr('y', (g) => yScale(g.language))
   .attr('width', (g) => xScale(g.value))
   .attr('height', yScale.bandwidth())
@@ -151,8 +151,8 @@ barGroups
 
     barGroups.append('text')
       .attr('class', 'divergence')
-      .attr('x', (a) => xScale(a.value) + 30)
-      .attr('y', (a) => yScale(a.language) + yScale.bandwidth() / 1.6)
+      .attr('x', (a) => xScale(a.value) + 28)
+      .attr('y', (a) => yScale(a.language) + yScale.bandwidth() / 1.4)
       .attr('fill', 'white')
       .attr('text-anchor', 'middle')
       .text((a, idx) => {
@@ -162,7 +162,7 @@ barGroups
         if (divergence > 0) text += '+'
         text += `${divergence}$`
 
-        return idx !== i ? text : '';
+        return idx !== i ? text : actual.value + '$';
       })
 
   })
@@ -184,24 +184,9 @@ barGroups
 svg.select('.bar1').style('fill', '#225ea8')
 shite = d3.select('.bar1')
 
-//barGroups
-  //.append('text')
-  //.attr('class', 'value')
-  //.attr('x', (a) => xScale(a.value) - 20)
-  //.attr('y', (a) => yScale(a.language) + yScale.bandwidth() / 1.6)
-  //.attr('text-anchor', 'middle')
-  //.text((a) => `${a.value}$`)
-
-svg.append('text')
-  .attr('class', 'label')
-  .attr('x', width / 2 + margin)
-  .attr('y', height + margin)
-  .attr('text-anchor', 'middle')
-  .text('Average price per gram in USD')
-
 svg.append('text')
   .attr('class', 'title')
   .attr('x', width / 2 + margin)
   .attr('y', 20)
   .attr('text-anchor', 'middle')
-  .text('Average price per gram')
+  .text('Drug\'s average price per gram in USD')
