@@ -12,15 +12,17 @@ var svg; = d3.select("#nodes").append("svg");
 var color = d3.rgb(112,128,144);
 
 
-d3.json("Meth.json").then(function(data) {
+d3.json("Heroin.json").then(function(data) {
     graph =  data;
     console.log(data);
     gen_vis();
 });
 
+
 function gen_vis(){
     var svg = d3.select("#nodes")
-            .append("svg");
+            .append("svg")
+            .attr("class", "node_svg");
 
     svg.append('text')
       .attr('class', 'title')
@@ -163,3 +165,11 @@ function dragended(d) {
     d.fx = null;
     d.fy = null;
 }
+
+function update_node_pie(drug){
+	console.log("In update drug is: " + drug)
+	d3.select(".node_svg").remove();
+	d3.json(drug + ".json").then(function(data) {
+    graph =  data;
+    gen_vis();
+})}

@@ -85,6 +85,8 @@ function update(){
 
     plotHeatMap();
 
+    update_node_pie(actualDrug);
+
     d3.csv(actualDrug+"DemoInfo.csv").then(function(csv) {
       parallel_sets.datum(csv).call(sets);
     });
