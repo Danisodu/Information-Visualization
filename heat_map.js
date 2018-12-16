@@ -10,17 +10,17 @@ var margin_hm = { top: 15, right: 10, bottom: 50, left: 100 },
   legendElementwidth_hm = 50,
   colorBuckets = 11,
   colors = ['#ffffd9','#edf8b1','#c7e9b4','#7fcdbb','#41b6c4','#1d91c0','#225ea8','#253494','#081d58','#020817'];
-  colLabel1 = ["Less than high school","High school graduate","Some college credit","College degree"],
-  colLabel2 = ["<$10k", "$10k-$20k", "$20k-$30k", "$30k-$40k", "$40k-$50k", "$50k-$75k", ">$75k"],
-  colLabel3 = ["0-6 days", "7-13 days", "14-20 days", "21-31 days"],
+  colLabel3 = ["Less than high school","High school graduate","Some college credit","College degree"],
+  colLabel1 = ["<$10k", "$10k-$20k", "$20k-$30k", "$30k-$40k", "$40k-$50k", "$50k-$75k", ">$75k"],
+  colLabel2 = ["0-6 days", "7-13 days", "14-20 days", "21-31 days"],
   colLabel4 = ["Full time","Part time","Unemployed"],
-  demoInfo = ["Education","PersonalIncome","SelectiveLeave","EmploymentStatus"];
+  demoInfo = ["Personal income","Skipped days at work","Education","Employment status"],
   rowLabel = ['Non user', 'Light user', 'Regular user', 'Heavy user'],
-  demo_info_values = {'Education': colLabel1,
-                      "PersonalIncome": colLabel2,
-                      "SelectiveLeave": colLabel3,
-                      "EmploymentStatus": colLabel4},
-  initialPositions = {0: 0, 1: 4, 2: 11, 3: 15};
+  demo_info_values = {0: colLabel1,
+                      1: colLabel2,
+                      2: colLabel3,
+                      3: colLabel4},
+  initialDemoInfoPositions = {0: 0.1, 1: 7.2, 2: 11.3, 3: 15.4};
 
 var svg_hm = d3.select(".svgHeatMap")
     .append("g")
@@ -48,15 +48,20 @@ svg_hm.selectAll(".rowLabel")
     .attr("transform", "translate(-6," + cellSize / 1.5 + ") ")
     .attr("class", function (d,i) { return "rowLabel mono r"+i;} );
 
+//actual cell size
+var c = 27
+//border size
+var b = 4
+
 svg_hm.selectAll(".colLabel1")
     .data(colLabel1)
     .enter()
     .append("text")
     .text(function (d) { return d; })
-    .attr("y", function (d, i) { return i * (cellSize-8) + 150; })
-    .attr("x",  function (d, i) { return i * (cellSize-8) + 90; })
+    .attr("y", function (d, i) { return (i + 1) * ((27/2) + 4); })
+    .attr("x", function (d, i) { return (i + 1) * ((27/2) + 4); })
     .style("text-anchor", "left")
-    .attr("transform", "translate("+cellSize/2 + ",-12) rotate (-45)")
+    .attr("transform", "translate("+ (175) + ",20) rotate (-45)")
     .attr("class",  function (d,i) { return "colLabel mono c"+i;} );
 
 svg_hm.selectAll(".colLabel2")
@@ -67,8 +72,8 @@ svg_hm.selectAll(".colLabel2")
     .attr("y", function (d, i) { return i * (cellSize-8) + 150; })
     .attr("x",  function (d, i) { return i * (cellSize-8) + 90; })
     .style("text-anchor", "left")
-    .attr("transform", "translate(190,-12) rotate (-45)")
-    .attr("class",  function (d,i) { return "colLabel mono c"+(i+4);} );
+    .attr("transform", "translate(300,-12) rotate (-45)")
+    .attr("class",  function (d,i) { return "colLabel mono c"+(i+7);} );
 
 svg_hm.selectAll(".colLabel3")
     .data(colLabel3)
@@ -92,21 +97,22 @@ svg_hm.selectAll(".colLabel4")
     .attr("transform", "translate(635,-12) rotate (-45)")
     .attr("class",  function (d,i) { return "colLabel mono c"+(i+15);} );
 
+
 svg_hm.selectAll(".colLabel5")
     .data(demoInfo)
     .enter()
     .append("text")
     .text(function (d) { return d; })
+    .attr("x",  function (d, i) { return i * (cellSize-8) + 170 + (cellSize * initialDemoInfoPositions[i]) + (cellSize * (demo_info_values[i].length)/2); })
     .attr("y", 200)
-    .attr("x",  function (d, i) { return i * (cellSize-8) + 172 /*+ (demo_info_values[demo_info[i]].length)/2*/; })
-    .style("text-anchor", "left")
+    .style("text-anchor", "middle")
     .attr("class",  function (d,i) { return "colDemoInfoLabel mono cd"+i;} );
 
 var legend = svg_hm.selectAll(".legend")
     .data(["<10%",'10-19%','20-29%','30-39%','40-49%','50-59%','60-69%','70-79%','80-89%','90-100%'])
     .enter().append("g")
     .attr("class", "legend")
-    .attr("transform", "translate(1070,-0)");
+    .attr("transform", "translate(1075,-0)");
 
 legend.append("text")
   .attr("class", "mono")

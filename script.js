@@ -1,10 +1,11 @@
-var translations = {0: -3, 1: cellSize*4.8, 2: cellSize*12.7, 3: cellSize*17.6};
+var translations = {0: -3, 1: cellSize*7.8, 2: cellSize*12.7, 3: cellSize*17.6};
 var actualDrug = "Cocaine";
-var phrase = {'Education': " have ",
-              "PersonalIncome": " earn ",
-              "SelectiveLeave": " misssed work for ",
-              "EmploymentStatus": " are "};
-
+var phrase = {2: " have ",
+              0: " earn ",
+              1: " misssed work for ",
+              3: " are "};
+var initialPositions = {0: 0, 1: 7, 2: 11, 3: 15};
+var demographicInfo = ["PersonalIncome","SelectiveLeave","Education","EmploymentStatus"];
 var sets = d3.parsets()
             .dimensions(["Sex", "Education","Employment Status"]);
 
@@ -38,8 +39,8 @@ function updateDrug(name){
 }
 
 function plotHeatMap(){
-  for (i in demoInfo){
-    read_csv(actualDrug + demoInfo[i] + '.csv', i);
+  for (i in demographicInfo){
+    read_csv(actualDrug + demographicInfo[i] + '.csv', i);
   }
 }
 
@@ -66,7 +67,7 @@ function init(dataset,i) {
                d3.select("#tooltip")
                   .style("left", (d3.event.pageX+30) + "px")
                   .style("top", (d3.event.pageY-20) + "px")
-                  .text(d.value + "% of " + actualDrug.toLowerCase() + " " + rowLabel[d.row].toLowerCase() + "s" + phrase[demoInfo[i]] + demo_info_values[demoInfo[i]][hccol.indexOf(d.col)].toLowerCase());
+                  .text(d.value + "% of " + actualDrug.toLowerCase() + " " + rowLabel[d.row].toLowerCase() + "s \n" + phrase[i] + demo_info_values[i][hccol.indexOf(d.col)].toLowerCase());
                //Show the tooltip
                d3.select("#tooltip").classed("hidden", false);
         })
