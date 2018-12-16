@@ -12,7 +12,7 @@ var svg; = d3.select("#nodes").append("svg");
 var color = d3.rgb(112,128,144);
 
 
-d3.json("data.json").then(function(data) {
+d3.json("Meth.json").then(function(data) {
     graph =  data;
     console.log(data);
     gen_vis();
@@ -85,7 +85,7 @@ function gen_vis(){
         drawPieChartBorder(d3Object, options);
         drawTitleText(d3Object, options)
 
-        if(d.main){
+        if(d.main == "true"){
             console.log("aa")
             d3Object.on("click", function(){onclick();});
             drawPieChart(d3Object,d.pieChart,options);
