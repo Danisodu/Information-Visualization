@@ -38,7 +38,7 @@ hr {
   position: absolute;
   top: 52%;
   left: 5%;
-  width: 25%;
+  width: 30%;
   height: 48%;
 }
 
@@ -57,7 +57,7 @@ svg {
 
 .bar {
   /*fill: #4a91d8;*/
-  fill: #7fcdbb;
+  fill: #c7e9b4;
 }
 
 .domain {

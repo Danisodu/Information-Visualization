@@ -10,19 +10,18 @@ var svg; = d3.select("#nodes").append("svg");
         width = +svg.attr("width"),
         height = +svg.attr("height");
 */
-var color = d3.rgb(112,128,144);
+var color = "#c7e9b4";
 
 
 
 d3.json("Heroin.json").then(function(data) {
     graph =  data;
     pie = data.pieChart;
-    console.log(data);
-    gen_vis("Heroin");
+    gen_vis();
 });
 
 
-function gen_vis(drug){
+function gen_vis(){
     var svg = d3.select("#nodes")
             .append("svg")
             .attr("class", "node_svg");
@@ -34,14 +33,11 @@ function gen_vis(drug){
       .attr('text-anchor', 'middle')
       .text('Drugs association degree');
 
-
-
-
     simulation = d3.forceSimulation()
             .force("link", d3.forceLink().id(function (d) {
                 return d.id;
             }))
-            .force("charge", d3.forceManyBody().strength(-2000))
+            .force("charge", d3.forceManyBody().strength(-4050))
             .force("center", d3.forceCenter(960 / 2, 600 / 2));
 
     var link = svg.append("g")
@@ -66,7 +62,8 @@ function gen_vis(drug){
                     .on("start", dragstarted)
                     .on("drag", dragged)
                     .on("end", dragended))
-            .on("mouseover", function(d, i){
+            .on("mousemove", function(d, i){
+                if(d.main == "false") {
                     d3.select("#tooltip")
                        .style("left", (d3.event.pageX+30) + "px")
                        .style("top", (d3.event.pageY-20) + "px")
@@ -74,6 +71,10 @@ function gen_vis(drug){
                     //Show the tooltip
                     d3.select("#tooltip").classed("hidden", false);
 
+
+                } else {
+                  return null;
+                }
               })
             .on("mouseout", function(){
                d3.select("#tooltip").classed("hidden", true);
@@ -93,13 +94,16 @@ function gen_vis(drug){
             labelText: d.id,
             labelColor: color
         };
+
         drawTitleText(d3Object, options)
         drawParentCircle(d3Object, options);
-        drawPieChartBorder(d3Object, options);
+        if(d.main == "false")
+          drawPieChartBorder(d3Object, options);
 
         if(d.main == "true"){
             d3Object.on("click", function(){onclick();});
             drawPieChart(d3Object,d.pieChart,options);
+
             //d3Object.on("mouseover",function(){drawPieChart(d3Object,d.pieChart,options)});
             //d3Object.on("mouseout",function(){svg.selectAll('#slice').remove(); console.log("out")});
         }
@@ -199,9 +203,10 @@ function dragended(d) {
 }
 
 function update_node_pie(drug){
+  console.log(drug)
 	d3.select(".node_svg").remove();
 	d3.json(drug + ".json").then(function(data) {
     graph =  data;
     pie = data.pieChart;
-    gen_vis(actualDrug);
+    gen_vis();
 })}

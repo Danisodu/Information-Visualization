@@ -111,7 +111,7 @@ barGroups
 
     updateDrug(actual.language);
     if (shite !== null) {
-      shite.style('fill', "#7fcdbb");
+      shite.style('fill', "#c7e9b4");
     }
 
     d3.select(this)

@@ -3,7 +3,7 @@ var DEFAULT_OPTIONS = {
     outerStrokeWidth: 10,
     parentNodeColor: 'blue',
     showPieChartBorder: true,
-    pieChartBorderColor: 'white',
+    pieChartBorderColor: 'black',
     pieChartBorderWidth: '5',
     showLabelText: false,
     labelText: 'text',
@@ -31,7 +31,11 @@ function drawParentCircle(nodeElement, options) {
             return parentNodeColor;
         })
         .attr("stroke", function (d) {
-            return parentNodeColor;
+           console.log(d);
+             if(d.main == "true")
+               return "#c7e9b4";
+             else
+               return parentNodeColor;
         })
         .attr("stroke-width", outerStrokeWidth * scale);
 }
@@ -56,6 +60,7 @@ function drawPieChart(nodeElement, percentages, options) {
     var halfCircumference = 2 * Math.PI * halfRadius;
     var user = 0;
     var percentToDraw = 0;
+    var userTypeLabels = ['non users', 'light users','regular users','heavy users'];
 
     for (var p in percentages) {
         percentToDraw += percentages[p].percent;
@@ -68,10 +73,8 @@ function drawPieChart(nodeElement, percentages, options) {
                     continue;
                 };
 
-
-
         nodeElement.insert('circle', '#parent-pie + *')
-            .attr("class","pie")
+            .attr("class","pie pie"+user)
             .attr("r", halfRadius)
             .attr("fill", 'transparent')
             .style('stroke', colors[user])
@@ -79,23 +82,30 @@ function drawPieChart(nodeElement, percentages, options) {
             .style('stroke-dasharray',
                     halfCircumference * percentToDraw / 100
                     + ' '
-                    + halfCircumference)
-            .on("mouseover", function(d,i){
-              d3.select("#tooltip")
-                 .style("left", (d3.event.pageX+30) + "px")
-                 .style("top", (d3.event.pageY-20) + "px")
-                .text(percent + "% of " + actualDrug.toLowerCase() + " users are ");
-
-                //Show the tooltip
-                d3.select("#tooltip").classed("hidden", false);
-
-              })
-            .on("mouseout", function(){
-               d3.select("#tooltip").classed("hidden", true);
-            });
+                    + halfCircumference);
 
         user = user + 1;
     }
+
+    d3.selectAll(".pie")
+        .on("mousemove", function(d,i){
+
+          var text = d3.select(this).attr("class");
+          //var index = text.substr(text.lenght - 1);
+          var index = text[7]
+
+          d3.select("#tooltip")
+             .style("left", (d3.event.pageX+30) + "px")
+             .style("top", (d3.event.pageY-20) + "px")
+            .text(Math.round(d.pieChart[index]["percent"]) + "% of " + d.id.toLowerCase() + " users are " + userTypeLabels[index]);
+
+            //Show the tooltip
+            d3.select("#tooltip").classed("hidden", false);
+
+          })
+        .on("mouseout", function(){
+           d3.select("#tooltip").classed("hidden", true);
+        });
 }
 
 function drawTitleText(nodeElement, options) {

@@ -11,9 +11,9 @@ var sets = d3.parsets()
             .dimensions(["Sex", "Education","Employment Status"]);
 
 var parallel_sets = d3.select("#parallel_sets").append("svg")
-        .attr("transform", "translate(0,-50)");
+        .attr("transform", "translate(0,-53)");
 
-d3.csv("CocaineDemoInfo.csv").then(function(csv) {
+d3.csv("HeroinDemoInfo.csv").then(function(csv) {
   parallel_sets.datum(csv).call(sets);
 
   plotHeatMap();
@@ -56,7 +56,7 @@ function init(dataset,i) {
         .attr("height", cellSize)
         .attr("transform", "translate("+ translations[i] + ", 0)")
         .style("fill", function(d) { return colors[Math.floor(d.value/10)]; })
-        .on("mouseover", function(d){
+        .on("mousemove", function(d){
                //highlight text
                d3.select(this).classed("cell-hover",true);
                d3.selectAll(".rowLabel").classed("text-highlight",function(r,ri){ return ri==(d.row);});
@@ -65,8 +65,8 @@ function init(dataset,i) {
 
                //Update the tooltip position and value
                d3.select("#tooltip")
-                  .style("left", (d3.event.pageX+30) + "px")
-                  .style("top", (d3.event.pageY-20) + "px")
+                  .style("left", (event.clientX+30) + "px")
+                  .style("top", (event.clientY-20) + "px")
                   .text(d.value + "% of " + actualDrug.toLowerCase() + " " + rowLabel[d.row].toLowerCase() + "s \n" + phrase[i] + demo_info_values[i][hccol.indexOf(d.col)].toLowerCase());
                //Show the tooltip
                d3.select("#tooltip").classed("hidden", false);
