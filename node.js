@@ -1,3 +1,4 @@
+var pie;
 var graph;
 var simulation;
 //var width = 960;
@@ -12,8 +13,10 @@ var svg; = d3.select("#nodes").append("svg");
 var color = d3.rgb(112,128,144);
 
 
+
 d3.json("Heroin.json").then(function(data) {
     graph =  data;
+    pie = data.pieChart;
     console.log(data);
     gen_vis("Heroin");
 });
@@ -31,13 +34,15 @@ function gen_vis(drug){
       .attr('text-anchor', 'middle')
       .text('Drugs association degree');
 
+
+
+
     simulation = d3.forceSimulation()
             .force("link", d3.forceLink().id(function (d) {
                 return d.id;
             }))
             .force("charge", d3.forceManyBody().strength(-2000))
-            .force("center", d3.forceCenter(960 / 2, 600 / 2))
-;
+            .force("center", d3.forceCenter(960 / 2, 600 / 2));
 
     var link = svg.append("g")
             .attr("class", "links")
@@ -88,9 +93,9 @@ function gen_vis(drug){
             labelText: d.id,
             labelColor: color
         };
-        drawPieChartBorder(d3Object, options);
-        drawParentCircle(d3Object, options);
         drawTitleText(d3Object, options)
+        drawParentCircle(d3Object, options);
+        drawPieChartBorder(d3Object, options);
 
         if(d.main == "true"){
             d3Object.on("click", function(){onclick();});
@@ -99,6 +104,29 @@ function gen_vis(drug){
             //d3Object.on("mouseout",function(){svg.selectAll('#slice').remove(); console.log("out")});
         }
     });
+
+    var typesOfUsers = ["Non Users:","Light Users:", "Regular Users:", "Heavy Users:"]
+
+	var legend = svg.selectAll(".legend")
+		    		.data(pie)
+		    		.enter().append("g")
+		    		.attr("class", "legend")
+		    		.attr("transform", "translate(80,200)");
+
+		legend.append("text")
+  				.attr("class", "mono")
+  				.text(function(d,i) {return typesOfUsers[i] + " " + Math.round(d.percent) + "%"; })
+  				.attr("width_hm", legendElementwidth_hm)
+  				.attr("x", 0)
+  				.attr("y", function (d, i) { return 20*i-7; })
+  				.style("text-anchor", "left");
+
+		legend.append("rect")
+  				.attr("x",-20)
+  				.attr("y", function (d, i) { return 20*i -20; })
+  				.attr('width',20)
+  				.attr('height', 20)
+  				.style("fill", function(d, i) { return colors[i]; });
 
     simulation
             .nodes(graph.nodes)
@@ -174,5 +202,6 @@ function update_node_pie(drug){
 	d3.select(".node_svg").remove();
 	d3.json(drug + ".json").then(function(data) {
     graph =  data;
+    pie = data.pieChart;
     gen_vis(actualDrug);
 })}

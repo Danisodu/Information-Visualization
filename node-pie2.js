@@ -46,7 +46,7 @@ function drawPieChartBorder(nodeElement, options) {
         .attr("r", radius)
         .attr("fill", 'transparent')
         .attr("stroke", pieChartBorderColor)
-        .attr("stroke-width", pieChartBorderWidth);
+        .attr("stroke-width", pieChartBorderWidth * scale);
 }
 var colorArray = ["red","black","blue","green"];
 
@@ -74,14 +74,13 @@ function drawPieChart(nodeElement, percentages, options) {
             .attr("class","pie")
             .attr("r", halfRadius)
             .attr("fill", 'transparent')
-            .style('stroke', colorArray[user])
+            .style('stroke', colors[user])
             .style('stroke-width', radius)
             .style('stroke-dasharray',
                     halfCircumference * percentToDraw / 100
                     + ' '
                     + halfCircumference)
             .on("mouseover", function(d,i){
-              console.log("DDD" + di);
               d3.select("#tooltip")
                  .style("left", (d3.event.pageX+30) + "px")
                  .style("top", (d3.event.pageY-20) + "px")
