@@ -27,7 +27,6 @@ function read_csv(fname,i){
     });
 
     delete data.columns;
-    console.log(data);
     init(data,i);
   });
 }

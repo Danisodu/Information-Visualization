@@ -39,7 +39,7 @@ hr {
   top: 52%;
   left: 5%;
   width: 25%;
-  height: 50%;
+  height: 48%;
 }
 
 #parallel_sets {
@@ -47,7 +47,7 @@ hr {
   top: 52%;
   left: 35%;
   width: 60%;
-  height: 45%;
+  height: 43%;
 }
 
 svg {
@@ -148,6 +148,11 @@ text.title {
   color: white;
   font-weight: 600;
 }
+
+/*circle {
+  stroke: white;
+  stroke-width: 4px;
+}*/
 
 #tooltip, .tooltip {
   background-color: white;

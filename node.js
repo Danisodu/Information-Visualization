@@ -3,7 +3,7 @@ var simulation;
 //var width = 960;
 //var height = 600;
 var clicked = false;
-
+var currentDrug = "Heroin";
 /*
 var svg; = d3.select("#nodes").append("svg");
         width = +svg.attr("width"),
@@ -15,11 +15,11 @@ var color = d3.rgb(112,128,144);
 d3.json("Heroin.json").then(function(data) {
     graph =  data;
     console.log(data);
-    gen_vis();
+    gen_vis("Heroin");
 });
 
 
-function gen_vis(){
+function gen_vis(drug){
     var svg = d3.select("#nodes")
             .append("svg")
             .attr("class", "node_svg");
@@ -60,35 +60,39 @@ function gen_vis(){
             .call(d3.drag()
                     .on("start", dragstarted)
                     .on("drag", dragged)
-                    .on("end", dragended));
+                    .on("end", dragended))
+            .on("mouseover", function(d, i){
+                    d3.select("#tooltip")
+                       .style("left", (d3.event.pageX+30) + "px")
+                       .style("top", (d3.event.pageY-20) + "px")
+                       .text(Math.round(d.size*100) + "% of users that consume \n" + actualDrug.toLowerCase() + " also consume " + d.id.toLowerCase());
+                    //Show the tooltip
+                    d3.select("#tooltip").classed("hidden", false);
 
+              })
+            .on("mouseout", function(){
+               d3.select("#tooltip").classed("hidden", true);
+            });
 
-    /*node[0].on("mouseover",function(){console.log("mouse over!")})
-           .on("mouseout",function(){console.log("mouse out!")});
-*/
     /* Draw the respective pie chart for each node */
     node.each(function (d) {
-        console.log("1");
 
         var d3Object = d3.select(this);
-        console.log(typeof d.s);
 
         var options = {
             scale: parseFloat(d.size),
-            radius: 40 * parseFloat(d.size),
+            radius: 50 * parseFloat(d.size),
             parentNodeColor: color,
             outerStrokeWidth: 12,
             showLabelText: true,
             labelText: d.id,
             labelColor: color
         };
-
-        drawParentCircle(d3Object, options);
         drawPieChartBorder(d3Object, options);
+        drawParentCircle(d3Object, options);
         drawTitleText(d3Object, options)
 
         if(d.main == "true"){
-            console.log("aa")
             d3Object.on("click", function(){onclick();});
             drawPieChart(d3Object,d.pieChart,options);
             //d3Object.on("mouseover",function(){drawPieChart(d3Object,d.pieChart,options)});
@@ -167,9 +171,8 @@ function dragended(d) {
 }
 
 function update_node_pie(drug){
-	console.log("In update drug is: " + drug)
 	d3.select(".node_svg").remove();
 	d3.json(drug + ".json").then(function(data) {
     graph =  data;
-    gen_vis();
+    gen_vis(actualDrug);
 })}

@@ -24,9 +24,6 @@ function drawParentCircle(nodeElement, options) {
     var scale = getOptionOrDefault('scale', options);
     var parentNodeColor = getOptionOrDefault('parentNodeColor', options);
 
-    console.log(radius);
-
-
     nodeElement.insert("circle")
         .attr("id", "parent-pie")
         .attr("r", radius)
@@ -49,7 +46,7 @@ function drawPieChartBorder(nodeElement, options) {
         .attr("r", radius)
         .attr("fill", 'transparent')
         .attr("stroke", pieChartBorderColor)
-        .attr("stroke-width", pieChartBorderWidth * scale);
+        .attr("stroke-width", pieChartBorderWidth);
 }
 var colorArray = ["red","black","blue","green"];
 
@@ -59,10 +56,22 @@ function drawPieChart(nodeElement, percentages, options) {
     var halfCircumference = 2 * Math.PI * halfRadius;
     var user = 0;
     var percentToDraw = 0;
+
     for (var p in percentages) {
         percentToDraw += percentages[p].percent;
+        var percent =  Math.round(percentages[p].percent);
+        var userType = percentages[p].user;
+
+                //dont draw ammounts too close to 0
+                if(percent == 0) {
+                    user = user + 1;
+                    continue;
+                };
+
+
 
         nodeElement.insert('circle', '#parent-pie + *')
+            .attr("class","pie")
             .attr("r", halfRadius)
             .attr("fill", 'transparent')
             .style('stroke', colorArray[user])
@@ -70,7 +79,22 @@ function drawPieChart(nodeElement, percentages, options) {
             .style('stroke-dasharray',
                     halfCircumference * percentToDraw / 100
                     + ' '
-                    + halfCircumference);
+                    + halfCircumference)
+            .on("mouseover", function(d,i){
+              console.log("DDD" + i)
+              d3.select("#tooltip")
+                 .style("left", (d3.event.pageX+30) + "px")
+                 .style("top", (d3.event.pageY-20) + "px")
+                .text(percent + "% of " + actualDrug.toLowerCase() + " users are ");
+
+                //Show the tooltip
+                d3.select("#tooltip").classed("hidden", false);
+
+              })
+            .on("mouseout", function(){
+               d3.select("#tooltip").classed("hidden", true);
+            });
+
         user = user + 1;
     }
 }
