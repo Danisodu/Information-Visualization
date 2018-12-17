@@ -6,21 +6,21 @@ var margin_hm = { top: 15, right: 10, bottom: 50, left: 100 },
   height_hm = cellSize*row_number*3 , // - margin_hm.top - margin_hm.bottom,
   //gridSize = Math.floor(width_hm / 24),
   hcrow = [0,1,2,3], // change to gene name or probe id
-  hccol = [1,2,3,4,5,6,7], // change to gene name or probe id
+  hccol = [1,2,3,4,5,6,7,8], // change to gene name or probe id
   legendElementwidth_hm = 50,
   colorBuckets = 11,
   colors = ['#ffffd9','#edf8b1','#c7e9b4','#7fcdbb','#41b6c4','#1d91c0','#225ea8','#253494','#081d58','#020817'];
-  colLabel3 = ["Less than high school","High school graduate","Some college credit","College degree"],
-  colLabel1 = ["<$10k", "$10k-$20k", "$20k-$30k", "$30k-$40k", "$40k-$50k", "$50k-$75k", ">$75k"],
-  colLabel2 = ["0-6 days", "7-13 days", "14-20 days", "21-31 days"],
+  colLabel3 = ["Less than high school","High school graduate","Some college credit","College graduate"],
+  colLabel2 = ["<$10k", "$10k-$20k", "$20k-$30k", "$30k-$40k", "$40k-$50k", "$50k-$75k", ">$75k"],
+  colLabel1 = ["0 days","1 day", "2 days", "3 days", "4 days","5 days","6 days","7 days"],
   colLabel4 = ["Full time","Part time","Unemployed"],
-  demoInfo = ["Personal income","Skipped days at work","Education","Employment status"],
+  demoInfo = ["Skipped days at work","Personal income","Education","Employment status"],
   rowLabel = ['Non user', 'Light user', 'Regular user', 'Heavy user'],
   demo_info_values = {0: colLabel1,
                       1: colLabel2,
                       2: colLabel3,
                       3: colLabel4},
-  initialDemoInfoPositions = {0: 0.1, 1: 7.2, 2: 11.3, 3: 15.4};
+  initialDemoInfoPositions = {0: 0.1, 1: 7.8, 2: 15, 3: 19.2};
 
 var svg_hm = d3.select(".svgHeatMap")
     .append("g")
@@ -70,8 +70,8 @@ svg_hm.selectAll(".colLabel2")
     .attr("y", function (d, i) { return i * 1.65 * delta_y + 150; })
     .attr("x", function (d, i) { return i * 1.65 * delta_x + 90; })
     .style("text-anchor", "left")
-    .attr("transform", "translate(295,-12) rotate (-45)")
-    .attr("class",  function (d,i) { return "colLabel mono c"+(i+4);} );
+    .attr("transform", "translate(316,-12) rotate (-45)")
+    .attr("class",  function (d,i) { return "colLabel mono c"+(i+7);} );
 
 svg_hm.selectAll(".colLabel3")
     .data(colLabel3)
@@ -81,8 +81,8 @@ svg_hm.selectAll(".colLabel3")
     .attr("y", function (d, i) { return i * 1.65 * delta_y + 150; })
     .attr("x", function (d, i) { return i * 1.65 * delta_x + 90; })
     .style("text-anchor", "left")
-    .attr("transform", "translate(470,-12) rotate (-45)")
-    .attr("class",  function (d,i) { return "colLabel mono c"+(i+11);} );
+    .attr("transform", "translate(595,-12) rotate (-45)")
+    .attr("class",  function (d,i) { return "colLabel mono c"+(i+14);} );
 
 svg_hm.selectAll(".colLabel4")
     .data(colLabel4)
@@ -92,7 +92,7 @@ svg_hm.selectAll(".colLabel4")
     .attr("y", function (d, i) { return i * 1.65 * delta_y + 150; })
     .attr("x", function (d, i) { return i * 1.65 * delta_x + 90; })
     .style("text-anchor", "left")
-    .attr("transform", "translate(635,-12) rotate (-45)")
+    .attr("transform", "translate(770,-12) rotate (-45)")
     .attr("class",  function (d,i) { return "colLabel mono c"+(i+15);} );
 
 svg_hm.selectAll(".colLabel5")
@@ -109,7 +109,7 @@ var legend = svg_hm.selectAll(".legend")
     .data(["<10%",'10-19%','20-29%','30-39%','40-49%','50-59%','60-69%','70-79%','80-89%','90-100%'])
     .enter().append("g")
     .attr("class", "legend")
-    .attr("transform", "translate(1075,-0)");
+    .attr("transform", "translate(1172,7)");
 
 legend.append("text")
   .attr("class", "mono")

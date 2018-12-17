@@ -1,11 +1,12 @@
-var translations = {0: -3, 1: cellSize*7.8, 2: cellSize*12.7, 3: cellSize*17.6};
+var translations = {0: -3, 1: cellSize*8.4, 2: cellSize*16.4, 3: cellSize*21.4};
 var actualDrug = "Heroin";
 var phrase = {2: " have ",
-              0: " earn ",
-              1: " misssed work for ",
+              1: " earn ",
+              0: " missed work for ",
               3: " are "};
-var initialPositions = {0: 0, 1: 7, 2: 11, 3: 15};
-var demographicInfo = ["PersonalIncome","SelectiveLeave","Education","EmploymentStatus"];
+var initialPositions = {0: 0, 1: 7, 2: 15, 3: 19};
+var demographicInfo = ["SelectiveLeave","PersonalIncome","Education","EmploymentStatus"];
+
 var sets = d3.parsets()
             .dimensions(["Sex", "Education","Employment Status"]);
 
@@ -33,6 +34,7 @@ function read_csv(fname,i){
 
 function updateDrug(name){
   actualDrug = name;
+  updateDrugPS(name);
   update();
 }
 
