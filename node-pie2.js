@@ -60,7 +60,16 @@ function drawPieChart(nodeElement, percentages, options) {
     var user = 0;
     var percentToDraw = 0;
     for (var p in percentages) {
-        percentToDraw += percentages[p].percent;
+        var percent =  Math.round(percentages[p].percent);
+
+        //dont draw ammounts too close to 0
+        if(percent == 0) {
+            user = user + 1;
+            continue;
+        }
+
+        percentToDraw += percent;
+        console.log("to draw:" + percent)
 
         nodeElement.insert('circle', '#parent-pie + *')
             .attr("r", halfRadius)

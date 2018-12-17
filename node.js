@@ -75,7 +75,7 @@ function gen_vis(){
 
         var options = {
             scale: parseFloat(d.size),
-            radius: 40 * parseFloat(d.size),
+            radius: 50 * parseFloat(d.size),
             parentNodeColor: color,
             outerStrokeWidth: 12,
             showLabelText: true,
