@@ -81,7 +81,7 @@ function drawPieChart(nodeElement, percentages, options) {
                     + ' '
                     + halfCircumference)
             .on("mouseover", function(d,i){
-              console.log("DDD" + i)
+              console.log("DDD" + di);
               d3.select("#tooltip")
                  .style("left", (d3.event.pageX+30) + "px")
                  .style("top", (d3.event.pageY-20) + "px")

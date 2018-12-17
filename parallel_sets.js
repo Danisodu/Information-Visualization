@@ -640,19 +640,136 @@
   }
 
   function translateY(d) { return "translate(0," + d.y + ")"; }
+/*
+  function verboseTooltip(vals,dims){
+    var text = "";
+
+    if(dims[0] == "Sex"){
+      // %(#) of d.name "actual_drug" users
+      text += "%(#) of " + vals[0] + " " + actual_drug + " users"
+      if(dims[1] == "Education"){
+        //have d.name
+        //have a d.name
+
+
+
+
+        if(list.length > 2){
+          //and are employed d.name
+          //are unemployed
+        }
+      }
+      if(list[1] == "Employment Status"){
+        //are employed d.name
+        //are unemployed
+
+        if(list.length > 2){
+        //have d.name 
+        //have a d.name
+      }
+    }
+    if(list[0] == "Education"){
+      // %(#) of "actual_drug" users have d.name
+      // %(#) of "actual_drug" users have a d.name
+      if(list[1] == "Sex"){
+        //and are d.name
+        if(list.length > 2){
+          //and are employed d.name
+          //and are unemployed
+        } 
+      }
+      if(list[1] == "Employment Status"){
+        //are employed d.name
+        //are unemployed
+
+        if(list.length > 2){
+          //and d.name
+        }        
+      }
+    }
+    if(list[0] == "Employment Status"){
+      // %(#) of "actual_drug" users are d.name
+      if(list[1] == "Sex"){
+        //, d.name
+        if(list.length > 2){
+          //and have d.name
+          //and have a d.name
+        }
+      }
+      if(list[1] == "Education"){
+        //and have d.name
+        //and have a d.name
+
+        if(list.length > 2){
+          //and are d.name
+        }
+      }
+    }
+    
+  }
+}
+*/
+
 
   function defaultTooltip(d) {
     var count = d.count,
         path = [];
+        dims = [];
     while (d.parent) {
-      if (d.name) path.unshift(d.name);
+      console.log(d.parent)
+
+      if (d.name) {
+        path.unshift(d.name);
+        dims.unshift(d.dimension);
+      }
       d = d.parent;
     }
-    return path.join(" → ") + "<br>" + count + " (" + Math.floor((count / d.count)*100) + "%)";
+
+    var i;
+    var t = "Drug" + " users ";
+    for (i = 0; i < path.length; i++){
+      if( i!=0){
+        t += " and ";
+      }
+
+      if(dims[i] == "Sex"){
+       t += "are " + path[i];}
+      
+      else if(dims[i] == "Education"){
+        t += "are ";
+      
+        if(path[i] == "College Graduate" || path[i] == " High School Graduation"){
+          t+="have a";
+        }
+
+        if(path[i] == " High School Graduation"){
+          t+="a high school graduation";
+        }
+        else{
+          t+=path[i];
+        }
+      }
+      else if(dims[i] == "Employment Status"){
+        if(path[i] == "Unemployed"){
+          t += "are not employed"
+        }
+        else{
+            t += "are employed " + path[i];
+        }
+      }
+    
+    }
+    return (count + " (" + Math.round((count / d.count)*100) + "%) " + t).toLowerCase();
   }
 
+
+
+/*
+    return path.join(" → ") + "<br>" + count + " (" + Math.round((count / d.count)*100) + "%)";
+  }
+*/
   function defaultCategoryTooltip(d) {
-    return d.name + "<br>" + d.count + " (" + Math.floor((d.count / d.dimension.count)*100) + "%)";
+    return d.name + "<br>" + d.count + " (" + Math.round((d.count / d.dimension.count)*100) + "%)";
   }
 
   function functor(v) {
@@ -661,3 +778,5 @@
     };
   }
 })();
+
+
