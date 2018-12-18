@@ -11,7 +11,7 @@ var sets = d3.parsets()
             .dimensions(["Sex", "Education","Employment Status"]);
 
 var parallel_sets = d3.select("#parallel_sets").append("svg")
-        .attr("transform", "translate(0,-30)");
+        .attr("transform", "translate(0,-20)");
 
 d3.csv("HeroinDemoInfo.csv").then(function(csv) {
   parallel_sets.datum(csv).call(sets);

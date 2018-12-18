@@ -25,12 +25,12 @@ var margin_hm = { top: 15, right: 10, bottom: 50, left: 100 },
 
 var svg_hm = d3.select(".svgHeatMap")
     .append("g")
-    .attr("transform", "translate(15,165)");
+    .attr("transform", "translate(15,146)");
 
 svg_hm.append('text')
   .attr('class', 'title')
   .attr('x', width_hm/2)
-  .attr('y', -145)
+  .attr('y', -126)
   .attr('text-anchor', 'middle')
   .text('Demographic information by user type');
 
@@ -48,15 +48,15 @@ svg_hm.selectAll(".rowLabel")
     .style("text-anchor", "end")
     .attr("transform", "translate(-6," + cellSize / 1.5 + ") ")
     .attr("class", function (d,i) { return "rowLabel mono r"+i;} )
-    .on("mouseover", function(d){
+    .on("mouseover", function(d,i){
            //highlight text
-           d3.selectAll(".rowLabel").classed("text-highlight",function(r,ri){ return ri==(d.row);});
+           d3.selectAll(".rowLabel").classed("text-highlight",function(r,ri){ return ri==(i);});
 
            //Update the tooltip position and value
            d3.select("#tooltip")
               .style("left", (event.clientX+30) + "px")
               .style("top", (event.clientY-20) + "px")
-              .text("a");
+              .text("User that consumes a drug ");
            //Show the tooltip
            d3.select("#tooltip").classed("hidden", false);
     })

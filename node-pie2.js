@@ -119,6 +119,14 @@ function drawTitleText(nodeElement, options) {
         .attr("alignment-baseline","central")
         .attr("fill", color)
         .attr("dy", radius + 20);
+
+    /*d3.selectAll(".node_label")
+      .on("mouseover", function(){
+      //  d3.select(this).classed("text-highlight",true);
+      })
+      .on("mouseout", function(){
+        //  d3.select(this).classed("text-highlight",false);
+      });*/
 }
 
 var NodePieBuilder = {

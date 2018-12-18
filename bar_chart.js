@@ -49,8 +49,8 @@ const svg = d3.select("#bar_chart").append('svg');
 var shite = null;
 
 const margin = 100;
-const width = 600 - 3 * margin;
-const height = 600 - 3 * margin;
+const width = 580 - 3 * margin;
+const height = 580 - 3 * margin;
 
 const chart = svg.append('g')
   .attr('transform', `translate(${margin}, 50)`);
@@ -106,7 +106,7 @@ barGroups
   .attr('x', (g) => 1)
   .attr('y', (g) => yScale(g.language))
   .attr('width', (g) => xScale(g.value))
-  .attr('height', yScale.bandwidth())
+  .attr('height', 19)
   .on('click', function (actual) {
 
     updateDrug(actual.language);
@@ -179,7 +179,7 @@ shite = d3.select('.bar0')
 
 svg.append('text')
   .attr('class', 'title')
-  .attr('x', width / 2 + margin)
+  .attr('x', width / 2 +70)
   .attr('y', 20)
   .attr('text-anchor', 'middle')
   .text('Drug\'s average price per gram in USD')

@@ -56,8 +56,14 @@ function gen_vis(){
                     .on("start", dragstarted)
                     .on("drag", dragged)
                     .on("end", dragended))
-            .on("mousemove", function(d, i){
+            .on("mousemove", function(d, i) {
+                d3.select(this).select(".node_label").classed("text-highlight",true);
+
                 if(d.main == "false") {
+                    d3.select(this).select("#parent-pie").classed("cell-hover",true);
+
+                    d3.select(this).select(".node_label").classed("text-highlight",true);
+
                     d3.select("#tooltip")
                        .style("left", (d3.event.pageX+30) + "px")
                        .style("top", (d3.event.pageY-20) + "px")
@@ -70,8 +76,11 @@ function gen_vis(){
                   return null;
                 }
               })
-            .on("mouseout", function(){
+            .on("mouseout", function() {
                d3.select("#tooltip").classed("hidden", true);
+               d3.select(this).classed("cell-hover",false);
+               d3.select(this).select("#parent-pie").classed("cell-hover",false);
+               d3.select(this).select(".node_label").classed("text-highlight",false);
             });
 
     /* Draw the respective pie chart for each node */
