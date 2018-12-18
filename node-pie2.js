@@ -9,6 +9,7 @@ var DEFAULT_OPTIONS = {
     labelText: 'text',
     labelColor: 'blue'
 };
+var pieColors =  ['#7fcdbb','#1d91c0','#253494','#020817'];
 
 function getOptionOrDefault(key, options, defaultOptions) {
     defaultOptions = defaultOptions || DEFAULT_OPTIONS;
@@ -31,7 +32,6 @@ function drawParentCircle(nodeElement, options) {
             return parentNodeColor;
         })
         .attr("stroke", function (d) {
-           console.log(d);
              if(d.main == "true")
                return "#c7e9b4";
              else
@@ -52,7 +52,6 @@ function drawPieChartBorder(nodeElement, options) {
         .attr("stroke", pieChartBorderColor)
         .attr("stroke-width", pieChartBorderWidth * scale);
 }
-var colorArray = ["red","black","blue","green"];
 
 function drawPieChart(nodeElement, percentages, options) {
     var radius = getOptionOrDefault('radius', options);
@@ -77,7 +76,7 @@ function drawPieChart(nodeElement, percentages, options) {
             .attr("class","pie pie"+user)
             .attr("r", halfRadius)
             .attr("fill", 'transparent')
-            .style('stroke', colors[user])
+            .style('stroke', pieColors[user])
             .style('stroke-width', radius)
             .style('stroke-dasharray',
                     halfCircumference * percentToDraw / 100
@@ -97,7 +96,7 @@ function drawPieChart(nodeElement, percentages, options) {
           d3.select("#tooltip")
              .style("left", (d3.event.pageX+30) + "px")
              .style("top", (d3.event.pageY-20) + "px")
-            .text(Math.round(d.pieChart[index]["percent"]) + "% of " + d.id.toLowerCase() + " users are " + userTypeLabels[index]);
+            .text(d.id + " has " + Math.round(d.pieChart[index]["percent"]) + "% of " + userTypeLabels[index]);
 
             //Show the tooltip
             d3.select("#tooltip").classed("hidden", false);

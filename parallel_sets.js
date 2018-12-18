@@ -1,5 +1,5 @@
 var drugPS = "heroin";
-
+var total = 0;
 d3.parsets = function() {
     var dispatch = d3.dispatch("sortDimensions", "sortCategories"),
         dimensions_ = autoDimensions,
@@ -422,7 +422,7 @@ d3.parsets = function() {
       return value === dispatch ? parsets : value;
     };
 
-    return parsets.value(1).width(1010).height(400);
+    return parsets.value(1).width(1047).height(438);
 
     function dimensionFormatName(d, i) {
       return dimensionFormat.call(this, d.name, i);
@@ -605,6 +605,8 @@ d3.parsets = function() {
   // Construct tree of all category counts for a given ordered list of
   // dimensions.  Similar to d3.nest, except we also set the parent.
   function buildTree(root, data, dimensions, value) {
+
+    total = data.length;
     zeroCounts(root);
     var n = data.length,
         nd = dimensions.length;
@@ -668,20 +670,35 @@ d3.parsets = function() {
     return t;
   }
 
+  function verifyPercentage(val){
+    if(val == 0)
+      val = 1;
+    return val;
+  }
+
   function defaultTooltip(d) {
     var count = d.count,
-        path = [];
+        path = [],
+        parentOfParents,
+        value;
 
     while (d.parent) {
+      //console.log(d.name + " has " + d.count);
+
       if (d.name) path.unshift(d.name);
+      parentOfParents = d;
       d = d.parent;
     }
+    value = Math.round((count / total)*100);
 
-    return Math.round((count / d.count)*100) + "% of " + drugPS + verboseTooltip(path);
+
+    return verifyPercentage(value) + "% of "  + drugPS + verboseTooltip(path);
   }
 
   function defaultCategoryTooltip(d) {
-    return Math.round((d.count / d.dimension.count)*100) + "% of " + drugPS + verboseTooltip([d.name]);
+    var value = Math.round((d.count / d.dimension.count)*100);
+
+    return verifyPercentage(value)  + "% of " + drugPS + verboseTooltip([d.name]);
   }
 
   function functor(v) {

@@ -5,14 +5,14 @@ var simulation;
 //var height = 600;
 var clicked = false;
 var currentDrug = "Heroin";
+var pieColors = ['#7fcdbb','#1d91c0','#253494','#020817'];
+
 /*
 var svg; = d3.select("#nodes").append("svg");
         width = +svg.attr("width"),
         height = +svg.attr("height");
 */
 var color = "#c7e9b4";
-
-
 
 d3.json("Heroin.json").then(function(data) {
     graph =  data;
@@ -22,27 +22,21 @@ d3.json("Heroin.json").then(function(data) {
 
 
 function gen_vis(){
+
     var svg = d3.select("#nodes")
             .append("svg")
             .attr("class", "node_svg");
-
-    svg.append('text')
-      .attr('class', 'title')
-      .attr('x', width / 2 + 28)
-      .attr('y', 20)
-      .attr('text-anchor', 'middle')
-      .text('Drugs association degree');
 
     simulation = d3.forceSimulation()
             .force("link", d3.forceLink().id(function (d) {
                 return d.id;
             }))
-            .force("charge", d3.forceManyBody().strength(-4050))
+            .force("charge", d3.forceManyBody().strength(-3750))
             .force("center", d3.forceCenter(960 / 2, 600 / 2));
 
     var link = svg.append("g")
             .attr("class", "links")
-            .attr('transform', `translate(-300, -100)`)
+            .attr('transform', `translate(-100, -110)`)
             .selectAll("line")
             .data(graph.links)
             .enter().append("line")
@@ -52,7 +46,7 @@ function gen_vis(){
 
     var node = svg.append("g")
             .attr("class", "nodes")
-            .attr('transform', `translate(-300, -100)`)
+            .attr('transform', `translate(-100, -110)`)
             .selectAll("g")
             .data(graph.nodes)
             .enter()
@@ -109,28 +103,28 @@ function gen_vis(){
         }
     });
 
-    var typesOfUsers = ["Non Users:","Light Users:", "Regular Users:", "Heavy Users:"]
+  var typesOfUsers = ["Non users: ","Light users: ", "Regular users: ", "Heavy users: "]
 
 	var legend = svg.selectAll(".legend")
 		    		.data(pie)
 		    		.enter().append("g")
 		    		.attr("class", "legend")
-		    		.attr("transform", "translate(80,200)");
+		    		.attr("transform", "translate(60,350)");
 
 		legend.append("text")
   				.attr("class", "mono")
   				.text(function(d,i) {return typesOfUsers[i] + " " + Math.round(d.percent) + "%"; })
-  				.attr("width_hm", legendElementwidth_hm)
-  				.attr("x", 0)
-  				.attr("y", function (d, i) { return 20*i-7; })
+  				.attr("width_hm", 50)
+  				.attr("x", 7)
+  				.attr("y", function (d, i) { return 20*i+1; })
   				.style("text-anchor", "left");
 
 		legend.append("rect")
   				.attr("x",-20)
-  				.attr("y", function (d, i) { return 20*i -20; })
+  				.attr("y", function (d, i) { return 20*i -12; })
   				.attr('width',20)
   				.attr('height', 20)
-  				.style("fill", function(d, i) { return colors[i]; });
+  				.style("fill", function(d, i) { return pieColors[i]; });
 
     simulation
             .nodes(graph.nodes)
@@ -203,7 +197,6 @@ function dragended(d) {
 }
 
 function update_node_pie(drug){
-  console.log(drug)
 	d3.select(".node_svg").remove();
 	d3.json(drug + ".json").then(function(data) {
     graph =  data;

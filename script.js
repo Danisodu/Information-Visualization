@@ -1,17 +1,17 @@
-var translations = {0: -3, 1: cellSize*8.4, 2: cellSize*16.4, 3: cellSize*21.4};
+var translations = {0: -22, 1: cellSize*8.4, 2: cellSize*16.4, 3: cellSize*21.4};
 var actualDrug = "Heroin";
 var phrase = {2: " have ",
               1: " earn ",
               0: " missed work for ",
               3: " are "};
-var initialPositions = {0: 0, 1: 7, 2: 15, 3: 19};
+var initialPositions = {0: 0, 1: 8, 2: 15, 3: 19};
 var demographicInfo = ["SelectiveLeave","PersonalIncome","Education","EmploymentStatus"];
 
 var sets = d3.parsets()
             .dimensions(["Sex", "Education","Employment Status"]);
 
 var parallel_sets = d3.select("#parallel_sets").append("svg")
-        .attr("transform", "translate(0,-53)");
+        .attr("transform", "translate(0,-30)");
 
 d3.csv("HeroinDemoInfo.csv").then(function(csv) {
   parallel_sets.datum(csv).call(sets);

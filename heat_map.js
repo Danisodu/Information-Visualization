@@ -1,6 +1,6 @@
 var margin_hm = { top: 15, right: 10, bottom: 50, left: 100 },
   cellSize=35;
-  col_number=4;
+  col_number=4.5;
   row_number=4;
   width_hm = cellSize*col_number*8, // - margin_hm.left - margin_hm.right,
   height_hm = cellSize*row_number*3 , // - margin_hm.top - margin_hm.bottom,
@@ -20,16 +20,17 @@ var margin_hm = { top: 15, right: 10, bottom: 50, left: 100 },
                       1: colLabel2,
                       2: colLabel3,
                       3: colLabel4},
-  initialDemoInfoPositions = {0: 0.1, 1: 7.8, 2: 15, 3: 19.2};
+  initialDemoInfoPositions = {0: -0.5, 1: 7.8, 2: 15, 3: 19.2},
+  pieColors = ['#7fcdbb','#1d91c0','#253494','#020817'];
 
 var svg_hm = d3.select(".svgHeatMap")
     .append("g")
-    .attr("transform", "translate(10,150)");
+    .attr("transform", "translate(15,165)");
 
 svg_hm.append('text')
   .attr('class', 'title')
   .attr('x', width_hm/2)
-  .attr('y', -130)
+  .attr('y', -145)
   .attr('text-anchor', 'middle')
   .text('Demographic information by user type');
 
@@ -42,11 +43,27 @@ svg_hm.selectAll(".rowLabel")
     .enter()
     .append("text")
     .text(function (d) { return d; })
-    .attr("x", 166)
+    .attr("x", 145)
     .attr("y", function (d, i) { return hcrow.indexOf(i) * cellSize + 35; })
     .style("text-anchor", "end")
     .attr("transform", "translate(-6," + cellSize / 1.5 + ") ")
-    .attr("class", function (d,i) { return "rowLabel mono r"+i;} );
+    .attr("class", function (d,i) { return "rowLabel mono r"+i;} )
+    .on("mouseover", function(d){
+           //highlight text
+           d3.selectAll(".rowLabel").classed("text-highlight",function(r,ri){ return ri==(d.row);});
+
+           //Update the tooltip position and value
+           d3.select("#tooltip")
+              .style("left", (event.clientX+30) + "px")
+              .style("top", (event.clientY-20) + "px")
+              .text("a");
+           //Show the tooltip
+           d3.select("#tooltip").classed("hidden", false);
+    })
+    .on("mouseout", function(){
+           d3.selectAll(".rowLabel").classed("text-highlight",false);
+           d3.select("#tooltip").classed("hidden", true);
+    });;
 
 var delta_y = Math.abs(Math.sin(22.5) * 31);
 var delta_x = Math.abs(Math.sin(22.5) * 31);
@@ -59,7 +76,7 @@ svg_hm.selectAll(".colLabel1")
     .attr("y", function (d, i) { return i * 1.65 * delta_y + 150; })
     .attr("x",  function (d, i) { return i * 1.65 * delta_x + 90; })
     .style("text-anchor", "left")
-    .attr("transform", "translate("+cellSize/2 + ",-12) rotate (-45)")
+    .attr("transform", "translate(-2,-12) rotate (-45)")
     .attr("class",  function (d,i) { return "colLabel mono c"+i;} );
 
 svg_hm.selectAll(".colLabel2")
@@ -101,7 +118,7 @@ svg_hm.selectAll(".colLabel5")
     .append("text")
     .text(function (d) { return d; })
     .attr("x",  function (d, i) { return i * (cellSize-8) + 170 + (cellSize * initialDemoInfoPositions[i]) + (cellSize * (demo_info_values[i].length)/2); })
-    .attr("y", 200)
+    .attr("y", 203)
     .style("text-anchor", "middle")
     .attr("class",  function (d,i) { return "colDemoInfoLabel mono cd"+i;} );
 
@@ -121,7 +138,7 @@ legend.append("text")
 
 legend.append("rect")
   .attr("x",8)
-  .attr("y", function (d, i) { return 20*i -20; })
+  .attr("y", function (d, i) { return 20*i -21; })
   .attr('width',20)
   .attr('height', 20)
   .style("fill", function(d, i) { return colors[i]; });

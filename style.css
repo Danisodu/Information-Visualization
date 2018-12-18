@@ -17,8 +17,8 @@ hr {
 
 #bar_chart {
   position: absolute;
-  top: 9%;
-  left: 2%;
+  top: 7%;
+  left: 3.5%;
   width: 40%;
   height: 45%;
   text-align: center;
@@ -27,32 +27,32 @@ hr {
 
 #heat_map {
   position: absolute;
-  top: 9%;
+  top: 7%;
   left:30%;
-  width: 65%;
-  height: 40%;
+  width: 70%;
+  height: 45%;
   margin: auto;
 }
 
 #nodes {
   position: absolute;
-  top: 52%;
-  left: 5%;
-  width: 30%;
-  height: 48%;
+  top: 48%;
+  left: 1%;
+  width: 37%;
+  height: 49%;
 }
 
 #parallel_sets {
   position: absolute;
-  top: 52%;
-  left: 41%;
+  top: 48%;
+  left: 39.2%;
   width: 59%;
-  height: 45%;
+  height: 49.7%;
 }
 
 svg {
   width: 100%;
-  height: 90.65%;
+  height: 90%;
 }
 
 .bar {
