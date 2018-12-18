@@ -130,7 +130,15 @@ var legend = svg_hm.selectAll(".legend")
     .data(["<10%",'10-19%','20-29%','30-39%','40-49%','50-59%','60-69%','70-79%','80-89%','90-100%'])
     .enter().append("g")
     .attr("class", "legend")
-    .attr("transform", "translate(1172,7)");
+    .attr("transform", "translate(1190,7)");
+
+legend.append('text')
+//.attr("class", "dimension")
+//.attr("font-weight", "bold")
+.attr('x', -25)
+.attr('y', -27)
+.attr('text-anchor', 'middle')
+.text('Heat map label:');
 
 legend.append("text")
   .attr("class", "mono")

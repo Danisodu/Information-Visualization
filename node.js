@@ -127,6 +127,12 @@ function gen_vis(){
 		    		.attr("class", "legend")
 		    		.attr("transform", "translate(520,350)");
 
+		legend.append('text')
+      		.attr('x', 60)
+      		.attr('y', 25)
+      		.attr('text-anchor', 'middle')
+      		.text('Pie chart label:');
+
 		legend.append("text")
   				.attr("class", "mono")
   				.text(function(d,i) {return typesOfUsers[i] + " " + Math.round(d.percent) + "%"; })

@@ -1,0 +1,24 @@
+script video
+
+1:Overview
+	topic: Drug Comsuption in the USA, our goal is to analyze demographic information related to users of different drugs and their types.
+	this visualization contains 4 idioms a bar chart, a heat map, a node pie chart, and a parallel-sets chart.
+
+2: Bar Chart
+	Goal: Show the average price per gram in USD of each type of drug, and observe how the prices of different drugs vary.
+	explain mouse over bar:
+		1)shows drug price, and whats the price difference with the other type of drugs
+	explian on click:
+		1) when a bar is clicked, the drug that corresponds to it becomes the selected one to be represented in the other idioms
+
+3: HeatMap:
+	Goal: show the density of distribution for each demographic attribute, such has Income, number of work days skipped, education level, and employment status; for each drug user type.
+
+	MouseOver: for better precision a tooltip was implemented showing the exact percentage of subjects that belong to that user type and demographic attribute.
+
+4. Node-Pie Chart:
+	Goal: Show what other types of drugs are also consumed by users of the selected drug, this is encoded by the radius of each satallite node. The pie-chart within the central node give us information about the distribution of user types for the selected drug.
+
+5. Parallel-Set: 
+	Goal: Represents for the selected drug the distribution of the inquiries' demographic information. Each step of the block adds a new demographic attribute that is applied to the chain of intersections.
+
