@@ -21,7 +21,11 @@ var margin_hm = { top: 15, right: 10, bottom: 50, left: 100 },
                       2: colLabel3,
                       3: colLabel4},
   initialDemoInfoPositions = {0: -0.5, 1: 7.8, 2: 15, 3: 19.2},
-  pieColors = ['#7fcdbb','#1d91c0','#253494','#020817'];
+  pieColors = ['#7fcdbb','#1d91c0','#253494','#020817'],
+  userTypeLabel = [" never consumed the select drug",
+                   " consumes the selected drug once a year",
+                  " consumes the selected drug once a month",
+                  " consumes the selected drug once a week"];
 
 var svg_hm = d3.select(".svgHeatMap")
     .append("g")
@@ -56,7 +60,7 @@ svg_hm.selectAll(".rowLabel")
            d3.select("#tooltip")
               .style("left", (event.clientX+30) + "px")
               .style("top", (event.clientY-20) + "px")
-              .text("User that consumes a drug ");
+              .text("User that " + userTypeLabel[i]);
            //Show the tooltip
            d3.select("#tooltip").classed("hidden", false);
     })

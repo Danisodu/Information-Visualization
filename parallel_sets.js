@@ -691,6 +691,8 @@ d3.parsets = function() {
     }
     value = Math.round((count / total)*100);
 
+    if(drugPS == "painreliever")
+        drugPS = "pain reliever";
 
     return verifyPercentage(value) + "% of "  + drugPS + verboseTooltip(path);
   }

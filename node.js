@@ -27,16 +27,23 @@ function gen_vis(){
             .append("svg")
             .attr("class", "node_svg");
 
+    svg.append('text')
+      .attr('class', 'title')
+      .attr('x', 272)
+      .attr('y', 25)
+      .attr('text-anchor', 'middle')
+      .text('Drugs association');
+
     simulation = d3.forceSimulation()
             .force("link", d3.forceLink().id(function (d) {
                 return d.id;
             }))
-            .force("charge", d3.forceManyBody().strength(-3750))
+            .force("charge", d3.forceManyBody().strength(-3700))
             .force("center", d3.forceCenter(960 / 2, 600 / 2));
 
     var link = svg.append("g")
             .attr("class", "links")
-            .attr('transform', `translate(-100, -110)`)
+            .attr('transform', `translate(-210, -60)`)
             .selectAll("line")
             .data(graph.links)
             .enter().append("line")
@@ -46,7 +53,7 @@ function gen_vis(){
 
     var node = svg.append("g")
             .attr("class", "nodes")
-            .attr('transform', `translate(-100, -110)`)
+            .attr('transform', `translate(-210, -60)`)
             .selectAll("g")
             .data(graph.nodes)
             .enter()
@@ -67,7 +74,7 @@ function gen_vis(){
                     d3.select("#tooltip")
                        .style("left", (d3.event.pageX+30) + "px")
                        .style("top", (d3.event.pageY-20) + "px")
-                       .text(Math.round(d.size*100) + "% of users that consume \n" + actualDrug.toLowerCase() + " also consume " + d.id.toLowerCase());
+                       .text(Math.round(d.size*100) + "% of users that consume \n" + currentDrug.toLowerCase() + " also consume " + d.id.toLowerCase());
                     //Show the tooltip
                     d3.select("#tooltip").classed("hidden", false);
 
@@ -118,19 +125,19 @@ function gen_vis(){
 		    		.data(pie)
 		    		.enter().append("g")
 		    		.attr("class", "legend")
-		    		.attr("transform", "translate(60,350)");
+		    		.attr("transform", "translate(520,350)");
 
 		legend.append("text")
   				.attr("class", "mono")
   				.text(function(d,i) {return typesOfUsers[i] + " " + Math.round(d.percent) + "%"; })
   				.attr("width_hm", 50)
-  				.attr("x", 7)
-  				.attr("y", function (d, i) { return 20*i+1; })
-  				.style("text-anchor", "left");
+  				.attr("x", 85)
+  				.attr("y", function (d, i) { return 20*i+46; })
+  				.style("text-anchor", "end");
 
 		legend.append("rect")
-  				.attr("x",-20)
-  				.attr("y", function (d, i) { return 20*i -12; })
+  				.attr("x",90)
+  				.attr("y", function (d, i) { return 20*i + 33; })
   				.attr('width',20)
   				.attr('height', 20)
   				.style("fill", function(d, i) { return pieColors[i]; });
@@ -207,6 +214,11 @@ function dragended(d) {
 
 function update_node_pie(drug){
 	d3.select(".node_svg").remove();
+
+  if(drug == "painreliever")
+        currentDrug = "Pain reliever";
+  else currentDrug = drug;
+
 	d3.json(drug + ".json").then(function(data) {
     graph =  data;
     pie = data.pieChart;

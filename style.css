@@ -19,7 +19,7 @@ hr {
 #bar_chart {
   position: absolute;
   top: 8%;
-  left: 3.5%;
+  left: 4%;
   width: 40%;
   height: 45%;
   text-align: center;
@@ -39,8 +39,8 @@ hr {
   position: absolute;
   top: 47%;
   left: 1%;
-  width: 37%;
-  height: 49%;
+  width: 36%;
+  height: 53.3%;
 }
 
 #parallel_sets {

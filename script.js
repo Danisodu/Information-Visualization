@@ -4,9 +4,12 @@ var phrase = {2: " have ",
               1: " earn ",
               0: " missed work for ",
               3: " are "};
+var phrase2 = {2: "",
+              1: " (USD) per year",
+              0: "",
+              3: ""};
 var initialPositions = {0: 0, 1: 8, 2: 15, 3: 19};
 var demographicInfo = ["SelectiveLeave","PersonalIncome","Education","EmploymentStatus"];
-
 var sets = d3.parsets()
             .dimensions(["Sex", "Education","Employment Status"]);
 
@@ -33,6 +36,9 @@ function read_csv(fname,i){
 }
 
 function updateDrug(name){
+  if(name == "Pain reliever")
+      name = "painreliever";
+
   actualDrug = name;
   updateDrugPS(name);
   update();
@@ -42,6 +48,12 @@ function plotHeatMap(){
   for (i in demographicInfo){
     read_csv(actualDrug + demographicInfo[i] + '.csv', i);
   }
+}
+
+function verifyDrug(name) {
+  if(name == "painreliever")
+    return "pain reliver";
+  return name;
 }
 
 function init(dataset,i) {
@@ -67,7 +79,7 @@ function init(dataset,i) {
                d3.select("#tooltip")
                   .style("left", (event.clientX+30) + "px")
                   .style("top", (event.clientY-20) + "px")
-                  .text(d.value + "% of " + actualDrug.toLowerCase() + " " + rowLabel[d.row].toLowerCase() + "s \n" + phrase[i] + demo_info_values[i][hccol.indexOf(d.col)].toLowerCase());
+                  .text(d.value + "% of " + verifyDrug(actualDrug.toLowerCase()) + " " + rowLabel[d.row].toLowerCase() + "s \n" + phrase[i] + demo_info_values[i][hccol.indexOf(d.col)].toLowerCase() + phrase2[i]);
                //Show the tooltip
                d3.select("#tooltip").classed("hidden", false);
         })

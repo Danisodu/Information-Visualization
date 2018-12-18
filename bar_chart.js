@@ -32,7 +32,7 @@ const sample = [
      value: 15,
    },
    {
-     language: 'PainReliever',
+     language: 'Pain reliever',
      value: 15,
    },
    {
@@ -179,7 +179,7 @@ shite = d3.select('.bar0')
 
 svg.append('text')
   .attr('class', 'title')
-  .attr('x', width / 2 +70)
+  .attr('x', width / 2 + 72)
   .attr('y', 20)
   .attr('text-anchor', 'middle')
   .text('Drug\'s average price per gram in USD')
