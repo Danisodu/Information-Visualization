@@ -6,7 +6,7 @@ Specifically, the drug consumption habits of American citizens was studied, and 
 intented to complete the following tasks:
 
 * Find drug prices and compare them;
-* Get demograpgic information distribution for each user type;
+* Get demographic information distribution for each user type;
 * Find the comsumption association between drugs;
 * Get the distribution of users that verify certain demographic characteristics.
 
