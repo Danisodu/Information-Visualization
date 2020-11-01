@@ -16,14 +16,14 @@ var sets = d3.parsets()
 var parallel_sets = d3.select("#parallel_sets").append("svg")
         .attr("transform", "translate(0,-20)");
 
-d3.csv("HeroinDemoInfo.csv").then(function(csv) {
+d3.csv("datasets/HeroinDemoInfo.csv").then(function(csv) {
   parallel_sets.datum(csv).call(sets);
 
   plotHeatMap();
 });
 
 function read_csv(fname,i){
-  d3.csv(fname).then(function(data) {
+  d3.csv('datasets/'+fname).then(function(data) {
     data.forEach(function (d){
       d.row = +d.UserType;
       d.col = +d.DemoInfo;
@@ -46,7 +46,7 @@ function updateDrug(name){
 
 function plotHeatMap(){
   for (i in demographicInfo){
-    read_csv(actualDrug + demographicInfo[i] + '.csv', i);
+    read_csv('datasets/' + actualDrug + demographicInfo[i] + '.csv', i);
   }
 }
 
@@ -100,7 +100,7 @@ function update(){
 
     update_node_pie(actualDrug);
 
-    d3.csv(actualDrug+"DemoInfo.csv").then(function(csv) {
+    d3.csv('datasets/' + actualDrug+"DemoInfo.csv").then(function(csv) {
       parallel_sets.datum(csv).call(sets);
     });
 }
