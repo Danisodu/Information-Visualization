@@ -60,6 +60,7 @@ Furthermore, we can see the price difference to other drugs, and the marijuana b
 the marijuana bar.
 
 Figure 1. Interaction with bar chart.
+
 ![Bar Chart](images/bar_chart.png)
 
 2. Task 2 - What is the income and education of a
@@ -71,6 +72,7 @@ In figure 2, we can use the heavy user row for the
 demographic attributes Education and Personal Income.
 
 Figure 2. Interaction with heatmap.
+
 ![Heatmap](images/heatmap.png)
 
 3. Task 3 - Which other drug cocaine consumers
@@ -86,6 +88,7 @@ of the hypothesis that marijuana is an gateway drug (a drug
 that leads the user on to more addictive or dangerous drugs).
 
 Figure 3. Interation with node pie.
+
 ![Node Pie](images/node_pie.png)
 
 4. Task 4 - Between heroin and cocaine, which one
@@ -105,4 +108,5 @@ heroin, 23%, and we can see that the answer to the question
 is cocaine.
 
 Figure 4. Interaction with parallel sets. 
+
 ![Node Pie](images/parallel_sets.png)
