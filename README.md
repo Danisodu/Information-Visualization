@@ -45,7 +45,7 @@ drug.
 
 The javascript library D3.js was used to develop all visualization techniques, and an overview can be found in the figure below.
 
-![Overview.](https://www.linkpicture.com/q/Sem-Titulo_6.png)
+![Overview.](images/overview.png)
 
 ## Demonstrating the potential
 Getting back to the tasks initially proposed, the following examples show how to answer some questions.
@@ -60,6 +60,8 @@ can see the price difference, and we can see that it costs less
 65 USD than meth. This can also be answered by hovering
 the marijuana bar.
 
+![Bar Chart](images/bar_chart.png)
+
 2. Task 2 - What is the income and education of a
 cocaine heavy-user?
 
@@ -70,6 +72,7 @@ demographic attributes Education and Personal Income. If we
 need exact information that is not given by the colors (hence
 it is discretized),
 
+![Heatmap](images/heatmap.png)
 
 3. Task 3 - Which other drug cocaine consumers
 consume the most?
@@ -86,6 +89,7 @@ with marijuana drug, this may be an argument in favor
 of the hypothesis that marijuana is an gateway drug (a drug
 that leads the user on to more addictive or dangerous drugs).
 
+![Node Pie](images/node_pie.png)
 
 4. Task 4 - Between heroin and cocaine, which one
 has more full time employed female consumers?
@@ -102,3 +106,5 @@ give us the exact percentage of female full time employed for
 the drug cocaine, 30%. Next we do the same for the drug
 heroin, 23%, and we can see that the answer to the question
 is cocaine.
+
+![Node Pie](images/parallel_sets.png)
