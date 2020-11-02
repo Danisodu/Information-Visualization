@@ -12,10 +12,14 @@ intented to complete the following tasks:
 
 
 ## Data
-The dataset used in this study concerns [drug consumption habits in the USA](https://data.world/balexturner/drug-use-employment-work-absence-income-race-education), 
-and it was also the information of [drug prices](https://www.dnalegal.com/drugs-menu).
-
-
+The dataset used in this study concerns [drug consumption habits in the USA](https://data.world/balexturner/drug-use-employment-work-absence-income-race-education), and it was also the information of [drug prices](https://www.dnalegal.com/drugs-menu). A variety of information can be found in the dataset of drug consumption habits. We enumerate a few:
+* Sex;
+* Ethnicity;
+* Education;
+* Personal income;
+* Employment status;
+* Whether the user has consume a specific drug and the number of times in month and year;
+* Number of times the user has missed work.
 
 The dataset was processed in the following manner:
 1. Removal of columns that were irrelevant for our visualization.
@@ -39,4 +43,6 @@ that by clicking on a bar, the correspondent drug will propagate
 to all other idioms, showing only information about that
 drug.
 
+
+![Overview.](https://www.linkpicture.com/q/Sem-Titulo_6.png)
 
