@@ -45,6 +45,7 @@ drug.
 
 The javascript library D3.js was used to develop all visualization techniques, and an overview can be found in the figure below.
 
+Figure 1. Overview.
 ![Overview.](images/overview.png)
 
 ## Demonstrating the potential
@@ -53,49 +54,45 @@ Getting back to the tasks initially proposed, the following examples show how to
 1. Task 1 - Is meth more expensive than marijuana?
 
 This answer can be given using only one idiom, the bar chart.
-We hover the mouse on the meth bar in bar chart, Figure 11,
-and we can see ahead of the bar the price of meth, 80 USD.
-And still while hovering the meth bar, in the marijuana bar we
-can see the price difference, and we can see that it costs less
-65 USD than meth. This can also be answered by hovering
+In figure 1, the mouse is hovered on the meth bar,
+and we can see ahead of the bar the price of meth (80 USD).
+Furthermore, we can see the price difference to other drugs, and the marijuana bar costs less 65 USD than meth. This can also be answered by hovering
 the marijuana bar.
 
+Figure 1. Interaction with bar chart.
 ![Bar Chart](images/bar_chart.png)
 
 2. Task 2 - What is the income and education of a
 cocaine heavy-user?
 
-To answer this question, see figure 12, we need to analyze the
+To answer this question, we need to analyze the
 heatmap, but first we select the drug cocaine on the bar chart.
-Then we analyze the heatmap on the heavy user row for the
-demographic attributes Education and Personal Income. If we
-need exact information that is not given by the colors (hence
-it is discretized),
+In figure 2, we can use the heavy user row for the
+demographic attributes Education and Personal Income.
 
+Figure 2. Interaction with heatmap.
 ![Heatmap](images/heatmap.png)
 
 3. Task 3 - Which other drug cocaine consumers
 consume the most?
 
-Like in the previous question we first need to select the drug
-cocaine on the bar chart so that we can see information about this drug. Next we look at the pie chart, Figure 13, and the
-bigger the nodes connected to the central node the biggest
-the correlation with the selected drug. We can see that the
-biggest node seems to be marijuana, but if we need additional
-information we can hover the mouse over marijuana node,
-and we can see that 98% of cocaine users also use this node
-drug. In this idiom we can see that for all drugs have a strong correlation
+Similarly to the previous questio,n we first need to select the drug
+cocaine on the bar chart so that we can see information about this drug. 
+In figure 3, we can conclude that the
+biggest node seems to be marijuana. Hovering the mouse over marijuana node, we can see that 98% of cocaine users also use this node
+drug. In this idiom we can see that all drugs have a strong correlation
 with marijuana drug, this may be an argument in favor
 of the hypothesis that marijuana is an gateway drug (a drug
 that leads the user on to more addictive or dangerous drugs).
 
+Figure 3. Interation with node pie.
 ![Node Pie](images/node_pie.png)
 
 4. Task 4 - Between heroin and cocaine, which one
 has more full time employed female consumers?
 
 To answer this question we need to visualize information
-about two drugs. So, lets start by selecting cocaine on the bar chart, next we look at the parallel sets idiom, Figure 14. We
+about two drugs. So, lets start by selecting cocaine on the bar chart, next we look at the parallel sets idiom, as shown in figure 4. We
 organize the sets of this idiom according with the information
 we need, we want female and full time employed, so we start
 with the Sex attribute on top followed by the Employment
@@ -107,4 +104,5 @@ the drug cocaine, 30%. Next we do the same for the drug
 heroin, 23%, and we can see that the answer to the question
 is cocaine.
 
+Figure 4. Interaction with parallel sets. 
 ![Node Pie](images/parallel_sets.png)
